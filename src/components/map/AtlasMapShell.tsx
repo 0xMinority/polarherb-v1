@@ -6,6 +6,7 @@ import HerbMapNode from "./HerbMapNode";
 import ActiveHerbPanel from "./ActiveHerbPanel";
 import AtlasConnectionLines from "./AtlasConnectionLines";
 import { calculateMapFocus } from "../../lib/map-focus";
+import { isHerbLikelyVisible } from "../../lib/map-visibility";
 
 export default function AtlasMapShell() {
     const [selectedHerb, setSelectedHerb] = useState<HerbNode | null>(
@@ -35,10 +36,16 @@ export default function AtlasMapShell() {
         "Longevity",
     ];
 
-    const visibleHerbs =
+    const visibleHerbs = (
         activeDomain === "All"
             ? herbNodes
-            : herbNodes.filter((herb) => herb.domain === activeDomain);
+            : herbNodes.filter((herb) => herb.domain === activeDomain)
+    ).filter((herb) =>
+        isHerbLikelyVisible(herb, {
+            scale: mapScale,
+            offset: mapOffset,
+        })
+    );
 
     useEffect(() => {
         if (!selectedHerb) return;

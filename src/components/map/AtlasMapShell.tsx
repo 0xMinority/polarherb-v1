@@ -4,11 +4,28 @@ import { useState } from "react";
 import { herbNodes, HerbNode } from "../../data/herbs";
 import HerbMapNode from "./HerbMapNode";
 import ActiveHerbPanel from "./ActiveHerbPanel";
+import AtlasConnectionLines from "./AtlasConnectionLines";
 
 export default function AtlasMapShell() {
     const [selectedHerb, setSelectedHerb] = useState<HerbNode | null>(
         herbNodes[0]
     );
+
+    const [activeDomain, setActiveDomain] = useState<string>("All");
+
+    const domainFilters = [
+        "All",
+        "Energy",
+        "Immunity",
+        "Cognitive",
+        "Respiratory",
+        "Longevity",
+    ];
+
+    const visibleHerbs =
+        activeDomain === "All"
+            ? herbNodes
+            : herbNodes.filter((herb) => herb.domain === activeDomain);
 
     return (
         <div className="relative h-[620px] w-full overflow-hidden bg-[#071016]">
@@ -60,33 +77,10 @@ export default function AtlasMapShell() {
             )}
 
             {selectedHerb && (
-                <svg className="pointer-events-none absolute inset-10 h-[calc(100%-80px)] w-[calc(100%-80px)] overflow-visible">
-                    {herbNodes
-                        .filter((herb) => herb.id !== selectedHerb.id)
-                        .map((herb) => {
-                            const x1 = selectedHerb.readiness;
-                            const y1 = 100 - (selectedHerb.altitude / 6000) * 100;
-
-                            const x2 = herb.readiness;
-                            const y2 = 100 - (herb.altitude / 6000) * 100;
-
-                            return (
-                                <line
-                                    key={`${selectedHerb.id}-${herb.id}`}
-                                    x1={`${x1}%`}
-                                    y1={`${y1}%`}
-                                    x2={`${x2}%`}
-                                    y2={`${y2}%`}
-                                    stroke="rgba(208,168,92,0.13)"
-                                    strokeWidth="1"
-                                    strokeDasharray="4 8"
-                                />
-                            );
-                        })}
-                </svg>
+                <AtlasConnectionLines selectedHerb={selectedHerb} herbs={herbNodes} />
             )}
 
-            {herbNodes.map((herb) => (
+            {visibleHerbs.map((herb) => (
                 <HerbMapNode
                     key={herb.id}
                     herb={herb}
@@ -104,6 +98,26 @@ export default function AtlasMapShell() {
                     Spatial intelligence layer for altitude origin, biological rarity,
                     evidence signal, and commercialization position.
                 </p>
+
+                <div className="mt-6 flex flex-wrap gap-2">
+                    {domainFilters.map((domain) => {
+                        const isActive = activeDomain === domain;
+
+                        return (
+                            <button
+                                key={domain}
+                                type="button"
+                                onClick={() => setActiveDomain(domain)}
+                                className={`border px-3 py-2 text-[10px] uppercase tracking-[0.18em] transition-all duration-300 ${isActive
+                                    ? "border-[#D0A85C]/40 bg-[#D0A85C]/10 text-[#D0A85C]"
+                                    : "border-white/[0.06] bg-white/[0.02] text-[#D7DCE2]/45 hover:border-white/[0.12] hover:text-[#D7DCE2]/75"
+                                    }`}
+                            >
+                                {domain}
+                            </button>
+                        );
+                    })}
+                </div>
             </div>
 
             {/* Selected herb panel */}

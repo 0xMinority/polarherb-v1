@@ -5,6 +5,7 @@ import { herbNodes, HerbNode } from "../../data/herbs";
 import HerbMapNode from "./HerbMapNode";
 import ActiveHerbPanel from "./ActiveHerbPanel";
 import AtlasConnectionLines from "./AtlasConnectionLines";
+import { calculateMapFocus } from "../../lib/map-focus";
 
 export default function AtlasMapShell() {
     const [selectedHerb, setSelectedHerb] = useState<HerbNode | null>(
@@ -158,14 +159,10 @@ export default function AtlasMapShell() {
                         onSelect={() => {
                             setSelectedHerb(herb);
 
-                            setMapScale(1.45);
+                            const focus = calculateMapFocus(herb);
 
-                            const herbY = 100 - (herb.altitude / 6000) * 100;
-
-                            setMapOffset({
-                                x: (42 - herb.readiness) * 7,
-                                y: (46 - herbY) * 4.8,
-                            });
+                            setMapScale(focus.scale);
+                            setMapOffset(focus.offset);
                         }}
                     />
                 ))}

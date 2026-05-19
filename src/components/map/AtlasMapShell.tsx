@@ -218,6 +218,9 @@ export default function AtlasMapShell() {
                         <p className="text-[10px] uppercase tracking-[0.18em] text-[#D7DCE2]/35">
                             Scale {mapScale.toFixed(2)}x
                         </p>
+                        <p className="text-[10px] uppercase tracking-[0.18em] text-[#D7DCE2]/35">
+                            Showing {visibleHerbs.length}/{herbNodes.length}
+                        </p>
                     </div>
                 </div>
             </div>

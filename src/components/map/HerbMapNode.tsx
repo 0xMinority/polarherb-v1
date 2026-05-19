@@ -38,12 +38,12 @@ export default function HerbMapNode({
 
     return (
         <motion.div
-            className="group absolute cursor-pointer"
+            className="group absolute cursor-pointer transition-transform duration-500"
             onClick={onSelect}
             style={{
                 left: `${x}%`,
                 top: `${y}%`,
-                transform: "translate(-50%, -50%)",
+                transform: `translate(-50%, -50%) scale(${isSelected ? 1.18 : 1})`,
             }}
             initial={{ opacity: 0, scale: 0.7 }}
             animate={{ opacity: 1, scale: 1 }}

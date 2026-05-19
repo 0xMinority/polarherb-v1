@@ -35,6 +35,7 @@ export default function HerbMapNode({
 
     const color = colorMap[herb.domain];
     const size = sizeMap[herb.power];
+    const nodeOpacity = 0.42 + herb.power * 0.12;
 
     return (
         <motion.div
@@ -55,12 +56,13 @@ export default function HerbMapNode({
                     width: `${size}px`,
                     height: `${size}px`,
                     background: color,
+                    opacity: nodeOpacity,
                     boxShadow: isSelected
                         ? `0 0 48px ${color}AA`
                         : `0 0 28px ${color}66`,
                 }}
                 animate={{
-                    opacity: isSelected ? [0.92, 1, 0.92] : [0.32, 0.42, 0.32],
+                    opacity: isSelected ? 1 : nodeOpacity * 0.72,
                     scale: isSelected ? [1.24, 1.34, 1.24] : [0.92, 1, 0.92],
                 }}
                 transition={{
@@ -69,9 +71,14 @@ export default function HerbMapNode({
                     ease: "easeInOut",
                 }}
                 whileHover={{
-                    scale: isSelected ? 1.58 : 1.42,
+                    scale: isSelected ? 1.68 : 1.52,
                     opacity: 1,
-                    boxShadow: `0 0 52px ${color}AA`,
+                    transition: {
+                        duration: 0.24,
+                    },
+                }}
+                whileTap={{
+                    scale: isSelected ? 1.42 : 1.28,
                 }}
             />
 

@@ -2,6 +2,7 @@ import PageContainer from "../src/components/layout/PageContainer";
 import SectionHeading from "../src/components/layout/SectionHeading";
 import ModuleSurface from "../src/components/ui/ModuleSurface";
 import AtlasMapShell from "../src/components/map/AtlasMapShell";
+import HerbProfilesSection from "../src/components/modules/HerbProfilesSection";
 
 export default function Home() {
   return (
@@ -22,6 +23,7 @@ export default function Home() {
           </div>
         </PageContainer>
       </section>
+      <HerbProfilesSection />
     </main>
   );
 }

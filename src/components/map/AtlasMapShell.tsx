@@ -13,7 +13,7 @@ export default function AtlasMapShell() {
 
     const [activeDomain, setActiveDomain] = useState<string>("All");
 
-    const [mapScale] = useState(1);
+    const [mapScale, setMapScale] = useState(1);
     const [mapOffset] = useState({ x: 0, y: 0 });
 
     const domainFilters = [
@@ -53,7 +53,16 @@ export default function AtlasMapShell() {
 
             {/* Axis frame */}
             <div
-                className="absolute inset-0 transition-transform duration-500"
+                onWheel={(event) => {
+                    event.preventDefault();
+
+                    setMapScale((prev) => {
+                        const next = prev - event.deltaY * 0.001;
+
+                        return Math.min(Math.max(next, 0.8), 2.4);
+                    });
+                }}
+                className="absolute inset-0 transition-transform duration-300"
                 style={{
                     transform: `translate(${mapOffset.x}px, ${mapOffset.y}px) scale(${mapScale})`,
                     transformOrigin: "center center",

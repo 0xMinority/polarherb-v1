@@ -160,9 +160,11 @@ export default function AtlasMapShell() {
 
                             setMapScale(1.45);
 
+                            const herbY = 100 - (herb.altitude / 6000) * 100;
+
                             setMapOffset({
-                                x: (50 - herb.readiness) * 6,
-                                y: (50 - (100 - (herb.altitude / 6000) * 100)) * 4,
+                                x: (42 - herb.readiness) * 7,
+                                y: (46 - herbY) * 4.8,
                             });
                         }}
                     />

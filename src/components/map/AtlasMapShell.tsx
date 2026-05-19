@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { motion } from "framer-motion";
 import { herbNodes, HerbNode } from "../../data/herbs";
 import HerbMapNode from "./HerbMapNode";
 
@@ -107,45 +108,68 @@ export default function AtlasMapShell() {
 
             {/* Selected herb panel */}
             {selectedHerb && (
-                <div className="absolute bottom-10 right-10 w-[320px] border border-white/[0.06] bg-[#071016]/92 p-5 backdrop-blur-[12px]">
-                    <p className="text-[10px] uppercase tracking-[0.24em] text-[#D0A85C]">
-                        Active Herb Node
-                    </p>
+                <motion.div
+                    key={selectedHerb.id}
+                    initial={{ opacity: 0, y: 14 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.42, ease: [0.22, 1, 0.36, 1] }}
+                    className="absolute bottom-10 right-10 w-[340px] overflow-hidden border border-white/[0.05] bg-[#071016]/88 backdrop-blur-[18px]"
+                >
 
-                    <h3 className="mt-4 text-xl font-medium tracking-[-0.03em] text-[#F3F1EA]">
-                        {selectedHerb.name}
-                    </h3>
+                    <div className="border-b border-white/[0.05] px-6 py-4">
+                        <p className="text-[10px] uppercase tracking-[0.28em] text-[#D0A85C]">
+                            Active Herb Node
+                        </p>
+                    </div>
 
-                    <div className="mt-5 grid grid-cols-2 gap-4 text-[11px] uppercase tracking-[0.16em] text-[#D7DCE2]/55">
-                        <div>
-                            <p>Altitude</p>
-                            <p className="mt-2 text-[#F3F1EA]">
-                                {selectedHerb.altitude}m
-                            </p>
-                        </div>
+                    <div className="px-6 py-6">
+                        <h3 className="text-[30px] font-medium tracking-[-0.04em] text-[#F3F1EA]">
+                            {selectedHerb.name}
+                        </h3>
 
-                        <div>
-                            <p>Domain</p>
-                            <p className="mt-2 text-[#F3F1EA]">
-                                {selectedHerb.domain}
-                            </p>
-                        </div>
+                        <div className="mt-8 grid grid-cols-2 gap-y-6">
+                            <div>
+                                <p className="text-[10px] uppercase tracking-[0.18em] text-[#D7DCE2]/42">
+                                    Altitude
+                                </p>
 
-                        <div>
-                            <p>Readiness</p>
-                            <p className="mt-2 text-[#F3F1EA]">
-                                {selectedHerb.readiness}/100
-                            </p>
-                        </div>
+                                <p className="mt-2 text-[15px] tracking-[-0.01em] text-[#F3F1EA]">
+                                    {selectedHerb.altitude}m
+                                </p>
+                            </div>
 
-                        <div>
-                            <p>Power</p>
-                            <p className="mt-2 text-[#F3F1EA]">
-                                Level {selectedHerb.power}
-                            </p>
+                            <div>
+                                <p className="text-[10px] uppercase tracking-[0.18em] text-[#D7DCE2]/42">
+                                    Domain
+                                </p>
+
+                                <p className="mt-2 text-[15px] tracking-[-0.01em] text-[#F3F1EA]">
+                                    {selectedHerb.domain}
+                                </p>
+                            </div>
+
+                            <div>
+                                <p className="text-[10px] uppercase tracking-[0.18em] text-[#D7DCE2]/42">
+                                    Readiness
+                                </p>
+
+                                <p className="mt-2 text-[15px] tracking-[-0.01em] text-[#F3F1EA]">
+                                    {selectedHerb.readiness}/100
+                                </p>
+                            </div>
+
+                            <div>
+                                <p className="text-[10px] uppercase tracking-[0.18em] text-[#D7DCE2]/42">
+                                    Bioactive Power
+                                </p>
+
+                                <p className="mt-2 text-[15px] tracking-[-0.01em] text-[#F3F1EA]">
+                                    Level {selectedHerb.power}
+                                </p>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </motion.div>
             )}
         </div>
     );

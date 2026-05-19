@@ -155,7 +155,16 @@ export default function AtlasMapShell() {
                         key={herb.id}
                         herb={herb}
                         isSelected={selectedHerb?.id === herb.id}
-                        onSelect={() => setSelectedHerb(herb)}
+                        onSelect={() => {
+                            setSelectedHerb(herb);
+
+                            setMapScale(1.45);
+
+                            setMapOffset({
+                                x: (50 - herb.readiness) * 6,
+                                y: (50 - (100 - (herb.altitude / 6000) * 100)) * 4,
+                            });
+                        }}
                     />
                 ))}
 

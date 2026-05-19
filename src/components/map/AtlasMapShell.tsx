@@ -188,6 +188,22 @@ export default function AtlasMapShell() {
                             );
                         })}
                     </div>
+                    <div className="mt-3 flex items-center gap-3">
+                        <button
+                            type="button"
+                            onClick={() => {
+                                setMapScale(1);
+                                setMapOffset({ x: 0, y: 0 });
+                            }}
+                            className="border border-white/[0.06] bg-white/[0.02] px-3 py-2 text-[10px] uppercase tracking-[0.18em] text-[#D7DCE2]/45 transition-all duration-300 hover:border-[#D0A85C]/30 hover:text-[#D0A85C]"
+                        >
+                            Reset View
+                        </button>
+
+                        <p className="text-[10px] uppercase tracking-[0.18em] text-[#D7DCE2]/35">
+                            Scale {mapScale.toFixed(2)}x
+                        </p>
+                    </div>
                 </div>
             </div>
             {/* Selected herb panel */}

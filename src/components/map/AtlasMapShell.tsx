@@ -57,14 +57,19 @@ export default function AtlasMapShell() {
                     event.preventDefault();
 
                     setMapScale((prev) => {
-                        const next = prev - event.deltaY * 0.001;
+                        const sensitivity = prev > 1.4 ? 0.0006 : 0.001;
+
+                        const next = prev - event.deltaY * sensitivity;
 
                         return Math.min(Math.max(next, 0.8), 2.4);
                     });
                 }}
-                className="absolute inset-0 transition-transform duration-300"
+                className="absolute inset-0 will-change-transform transition-transform duration-500 ease-out"
                 style={{
-                    transform: `translate(${mapOffset.x}px, ${mapOffset.y}px) scale(${mapScale})`,
+                    transform: `
+                      translate3d(${mapOffset.x}px, ${mapOffset.y}px, 0)
+                      scale(${mapScale})
+                    `,
                     transformOrigin: "center center",
                 }}
             >

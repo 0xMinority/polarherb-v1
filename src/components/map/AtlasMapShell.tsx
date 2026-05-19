@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { herbNodes, HerbNode } from "../../data/herbs";
 import HerbMapNode from "./HerbMapNode";
 import ActiveHerbPanel from "./ActiveHerbPanel";
@@ -14,7 +14,16 @@ export default function AtlasMapShell() {
     const [activeDomain, setActiveDomain] = useState<string>("All");
 
     const [mapScale, setMapScale] = useState(1);
-    const [mapOffset] = useState({ x: 0, y: 0 });
+
+    const [mapOffset, setMapOffset] = useState({
+        x: 0,
+        y: 0,
+    });
+
+    const dragStartRef = useRef<{
+        x: number;
+        y: number;
+    } | null>(null);
 
     const domainFilters = [
         "All",
@@ -53,6 +62,30 @@ export default function AtlasMapShell() {
 
             {/* Axis frame */}
             <div
+                onMouseDown={(event) => {
+                    dragStartRef.current = {
+                        x: event.clientX - mapOffset.x,
+                        y: event.clientY - mapOffset.y,
+                    };
+                }}
+
+                onMouseMove={(event) => {
+                    if (!dragStartRef.current) return;
+
+                    setMapOffset({
+                        x: event.clientX - dragStartRef.current.x,
+                        y: event.clientY - dragStartRef.current.y,
+                    });
+                }}
+
+                onMouseUp={() => {
+                    dragStartRef.current = null;
+                }}
+
+                onMouseLeave={() => {
+                    dragStartRef.current = null;
+                }}
+
                 onWheel={(event) => {
                     event.preventDefault();
 
@@ -114,7 +147,7 @@ export default function AtlasMapShell() {
                 )}
 
                 {selectedHerb && (
-                    <AtlasConnectionLines selectedHerb={selectedHerb} herbs={herbNodes} />
+                    <AtlasConnectionLines selectedHerb={selectedHerb} herbs={visibleHerbs} />
                 )}
 
                 {visibleHerbs.map((herb) => (

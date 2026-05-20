@@ -1,6 +1,9 @@
 import type { Herb } from "../../types/herb";
 import { getDomainColor } from "../../lib/domain-colors";
 import { EvidenceComposition } from "./EvidenceComposition";
+import { BioactiveMechanism } from "./BioactiveMechanism";
+import { CommercialReadiness } from "./CommercialReadiness";
+import { RegulatoryOutlook } from "./RegulatoryOutlook";
 
 interface SectionCardProps {
     index: number;
@@ -117,6 +120,15 @@ export function SectionCard({
                     </div>
                 </div>
             </div>
+            {title === "Bioactive Mechanism" && (
+                <BioactiveMechanism herbName={herb.name} domain={herb.domain} />
+            )}
+            {title === "Commercial Readiness" && (
+                <CommercialReadiness readiness={herb.readiness} />
+            )}
+            {title === "Regulatory Outlook" && (
+                <RegulatoryOutlook />
+            )}
             {title === "Evidence Layer" && (
                 <EvidenceComposition herbName={herb.name} />
             )}

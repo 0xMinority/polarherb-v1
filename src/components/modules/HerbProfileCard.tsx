@@ -23,7 +23,7 @@ export default function HerbProfileCard({
         ease: [0.22, 1, 0.36, 1],
       }}
     >
-      <div className="relative">
+      <div className="relative flex h-full flex-col">
         <div className="flex items-start justify-between">
           <div>
             <p className="text-[10px] uppercase tracking-[0.22em] text-[#D0A85C]">
@@ -92,6 +92,15 @@ export default function HerbProfileCard({
               }}
             />
           </div>
+        </div>
+        <div className="mt-auto flex items-center justify-between border-t border-white/[0.05] pt-5">
+          <p className="text-[10px] uppercase tracking-[0.2em] text-[#D7DCE2]/35">
+            Intelligence Profile
+          </p>
+
+          <span className="text-[10px] uppercase tracking-[0.2em] text-[#D0A85C]/75 transition-colors duration-300 group-hover:text-[#D0A85C]">
+            View →
+          </span>
         </div>
       </div>
     </motion.div>

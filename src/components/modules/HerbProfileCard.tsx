@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { HerbNode } from "../../data/herbs";
 
 interface HerbProfileCardProps {
@@ -35,6 +36,17 @@ export default function HerbProfileCard({
 
           <div className="border border-white/[0.06] px-3 py-1 text-[10px] uppercase tracking-[0.18em] text-[#D7DCE2]/46">
             Power {herb.power}
+          </div>
+        </div>
+
+        <div className="mt-10 flex h-[180px] items-center justify-center border-y border-white/[0.05]">
+          <div className="relative h-[140px] w-[140px] opacity-90 transition-opacity duration-500 group-hover:opacity-100">
+            <Image
+              src="/Cordyceps_sinensis.png"
+              alt={herb.name}
+              fill
+              className="object-contain"
+            />
           </div>
         </div>
 

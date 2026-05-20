@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { herbNodes, HerbNode } from "../../data/herbs";
+import { useRef, useState } from "react";
+import { herbNodes } from "../../data/herbs";
+import type { HerbNode } from "../../data/herbs";
 import HerbMapNode from "./HerbMapNode";
 import ActiveHerbPanel from "./ActiveHerbPanel";
 import AtlasConnectionLines from "./AtlasConnectionLines";
@@ -46,18 +47,6 @@ export default function AtlasMapShell() {
             offset: mapOffset,
         })
     );
-
-    useEffect(() => {
-        if (!selectedHerb) return;
-
-        const herbStillVisible = visibleHerbs.some(
-            (herb) => herb.id === selectedHerb.id
-        );
-
-        if (!herbStillVisible) {
-            setSelectedHerb(visibleHerbs[0] ?? null);
-        }
-    }, [activeDomain, selectedHerb, visibleHerbs]);
 
     return (
         <div className="relative h-[620px] w-full overflow-hidden bg-[#071016]">

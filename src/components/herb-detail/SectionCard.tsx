@@ -14,7 +14,12 @@ export function SectionCard({
     return (
         <section
             id={title.toLowerCase().replace(/\s+/g, "-")}
-            className="relative min-h-[520px] scroll-mt-8 overflow-hidden bg-[#071016] p-10 lg:p-14"
+            className="relative min-h-[520px] scroll-mt-8 overflow-hidden p-10 lg:p-14"
+            style={{
+                background: isPrioritySection(title)
+                    ? "linear-gradient(to bottom, rgba(255,255,255,0.018), #071016)"
+                    : "#071016",
+            }}
         >
             <div className="pointer-events-none absolute inset-0">
                 <div className="absolute inset-x-0 top-0 h-[160px] bg-[linear-gradient(to_bottom,rgba(255,255,255,0.018),transparent)]" />
@@ -116,4 +121,12 @@ function getDomainColor(domain: string) {
     };
 
     return colors[domain] ?? "#D7DCE2";
+}
+
+function isPrioritySection(title: string) {
+    return [
+        "Bioactive Mechanism",
+        "Commercial Readiness",
+        "Evidence Layer",
+    ].includes(title);
 }

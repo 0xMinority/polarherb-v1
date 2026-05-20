@@ -1,3 +1,6 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import { getDomainColor } from "../../lib/domain-colors";
 import type { HerbDomain } from "../../types/herb";
 
@@ -10,15 +13,54 @@ export function SidebarNav({
     sections,
     domain,
 }: SidebarNavProps) {
+    const [activeSection, setActiveSection] = useState(sections[0]);
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (!entry.isIntersecting) return;
+
+                    const section = sections.find(
+                        (item) =>
+                            item.toLowerCase().replace(/\s+/g, "-") === entry.target.id
+                    );
+
+                    if (section) {
+                        setActiveSection(section);
+                    }
+                });
+            },
+            {
+                rootMargin: "-30% 0px -55% 0px",
+                threshold: 0,
+            }
+        );
+
+        sections.forEach((section) => {
+            const id = section.toLowerCase().replace(/\s+/g, "-");
+            const element = document.getElementById(id);
+
+            if (element) {
+                observer.observe(element);
+            }
+        });
+
+        return () => observer.disconnect();
+    }, [sections]);
+
     return (
         <aside className="bg-[#071016] p-8 lg:sticky lg:top-8 lg:self-start">
-            <p className="text-[10px] uppercase tracking-[0.22em] text-[#D0A85C]">
+            <p
+                className="text-[10px] uppercase tracking-[0.22em]"
+                style={{ color: getDomainColor(domain) }}
+            >
                 Profile Index
             </p>
 
             <div className="mt-8 space-y-[1px] bg-white/[0.05]">
                 {sections.map((section, index) => {
-                    const isActive = index === 0;
+                    const isActive = activeSection === section;
 
                     return (
                         <a

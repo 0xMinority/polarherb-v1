@@ -28,9 +28,7 @@ export default async function HerbDetailPage({ params }: HerbDetailPageProps) {
   return (
     <main className="relative min-h-screen overflow-hidden bg-[#040B11] text-[#F3F1EA]">
       <div className="pointer-events-none absolute inset-0">
-        <div className="absolute left-[-12%] top-[-10%] h-[720px] w-[720px] rounded-full bg-[#D0A85C]/[0.035] blur-[140px]" />
-
-        <div className="absolute bottom-[-18%] right-[-8%] h-[640px] w-[640px] rounded-full bg-[#1A2B3A]/40 blur-[140px]" />
+        <div className="absolute inset-x-0 top-0 h-[160px] bg-[linear-gradient(to_bottom,rgba(255,255,255,0.018),transparent)]" />
       </div>
       <section className="relative z-10 mx-auto grid min-h-screen max-w-[1540px] grid-cols-1 gap-[1px] bg-white/[0.05] px-8 py-[120px] lg:grid-cols-[1.08fr_0.92fr]">
         <div className="bg-[#071016] p-10 lg:p-14">
@@ -91,9 +89,9 @@ export default async function HerbDetailPage({ params }: HerbDetailPageProps) {
                 <a
                   href={`#${section.toLowerCase().replace(/\s+/g, "-")}`}
                   key={section}
-                  className={`px-4 py-4 text-[11px] uppercase tracking-[0.18em] ${isActive
+                  className={`block px-4 py-4 text-[11px] uppercase tracking-[0.18em] transition-colors duration-300 ${isActive
                     ? "bg-[#0A141D] text-[#F3F1EA]"
-                    : "bg-[#071016] text-[#D7DCE2]/42"
+                    : "bg-[#071016] text-[#D7DCE2]/42 hover:bg-[#0A141D] hover:text-[#F3F1EA]"
                     }`}
                 >
                   {String(index + 1).padStart(2, "0")} / {section}
@@ -108,34 +106,54 @@ export default async function HerbDetailPage({ params }: HerbDetailPageProps) {
             <section
               id={title.toLowerCase().replace(/\s+/g, "-")}
               key={title}
-              className="min-h-[520px] scroll-mt-8 bg-[#071016] p-10 lg:p-14"
+              className="relative min-h-[520px] scroll-mt-8 overflow-hidden bg-[#071016] p-10 lg:p-14"
             >
-              <p className="text-[10px] uppercase tracking-[0.22em] text-[#D0A85C]/75">
-                {String(index + 1).padStart(2, "0")}
-              </p>
+              <div className="pointer-events-none absolute inset-0">
 
-              <h2 className="mt-6 text-[34px] font-medium tracking-[-0.04em] text-[#F3F1EA]">
-                {title}
-              </h2>
+                <div className="absolute inset-x-0 top-0 h-[160px] bg-[linear-gradient(to_bottom,rgba(255,255,255,0.018),transparent)]" />
 
-              <p className="mt-6 max-w-3xl text-[15px] leading-8 text-[#D7DCE2]/62">
-                This module will expand into a structured intelligence layer for {herb.name},
-                combining data visualization, evidence interpretation, and commercialization context.
-              </p>
+              </div>
 
-              <div className="mt-14 border-t border-white/[0.05] pt-10">
-                <div className="grid grid-cols-2 gap-[1px] bg-white/[0.05] lg:grid-cols-4">
-                  {[1, 2, 3, 4].map((item) => (
-                    <div key={item} className="bg-[#0A141D] p-5">
-                      <p className="text-[10px] uppercase tracking-[0.18em] text-[#D7DCE2]/35">
-                        Signal
-                      </p>
+              <div className="relative z-10">
+                <div className="flex items-center justify-between border-b border-white/[0.05] pb-5">
+                  <p className="text-[10px] uppercase tracking-[0.22em] text-[#D0A85C]/75">
+                    {String(index + 1).padStart(2, "0")}
+                  </p>
 
-                      <p className="mt-4 text-[22px] tracking-[-0.03em] text-[#F3F1EA]">
-                        {item * 24}
-                      </p>
-                    </div>
-                  ))}
+                  <div className="flex items-center gap-6 text-[10px] uppercase tracking-[0.18em] text-[#D7DCE2]/32">
+                    <span>Intelligence Layer</span>
+                    <span>Structured Signal</span>
+                  </div>
+                </div>
+
+                <h2 className="mt-6 text-[34px] font-medium tracking-[-0.04em] text-[#F3F1EA]">
+                  {title}
+                </h2>
+
+                <p className="mt-6 max-w-[760px] text-[15px] leading-8 text-[#D7DCE2]/62">
+                  This module will expand into a structured intelligence layer for {herb.name},
+                  combining data visualization, evidence interpretation, and commercialization context.
+                </p>
+
+                <div className="mt-14 max-w-[1100px] border-t border-white/[0.05] pt-10">
+                  <div className="grid grid-cols-2 gap-[1px] bg-white/[0.05] lg:grid-cols-4">
+                    {[
+                      ["Altitude Signal", `${herb.altitude}M`],
+                      ["Functional Domain", herb.domain],
+                      ["Readiness", `${herb.readiness}/100`],
+                      ["Bioactive Power", `Level ${herb.power}`],
+                    ].map(([label, value]) => (
+                      <div key={label} className="bg-[#0A141D] p-5">
+                        <p className="text-[10px] uppercase tracking-[0.18em] text-[#D7DCE2]/35">
+                          {label}
+                        </p>
+
+                        <p className="mt-4 text-[22px] tracking-[-0.03em] text-[#F3F1EA]">
+                          {value}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
             </section>

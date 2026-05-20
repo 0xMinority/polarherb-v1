@@ -14,4 +14,5 @@ export interface Herb {
   domain: HerbDomain;
   readiness: number;
   power: HerbPower;
+  summary: string;
 }

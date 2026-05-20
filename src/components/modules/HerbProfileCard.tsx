@@ -13,12 +13,13 @@ export default function HerbProfileCard({
 }: HerbProfileCardProps) {
   return (
     <motion.div
-      className="group relative min-h-[320px] overflow-hidden bg-[#071016] p-7"
+      className="group relative min-h-[300px] overflow-hidden bg-[#071016] px-7 py-6"
       whileHover={{
-        y: -3,
+        y: -2,
+        backgroundColor: "#09131B",
       }}
       transition={{
-        duration: 0.32,
+        duration: 0.28,
         ease: [0.22, 1, 0.36, 1],
       }}
     >
@@ -29,7 +30,7 @@ export default function HerbProfileCard({
               {herb.domain}
             </p>
 
-            <h3 className="mt-4 text-[22px] font-medium tracking-[-0.035em] text-[#F3F1EA]">
+            <h3 className="mt-3 text-[20px] font-medium tracking-[-0.035em] text-[#F3F1EA]">
               {herb.name}
             </h3>
           </div>
@@ -39,8 +40,8 @@ export default function HerbProfileCard({
           </div>
         </div>
 
-        <div className="mt-10 flex h-[180px] items-center justify-center border-y border-white/[0.05]">
-          <div className="relative h-[140px] w-[140px] opacity-90 transition-opacity duration-500 group-hover:opacity-100">
+        <div className="mt-8 flex h-[180px] items-center justify-center border-y border-white/[0.05] bg-[#040B11]/35">
+          <div className="relative h-[165px] w-[165px] opacity-80 transition-all duration-500 group-hover:scale-[1.03] group-hover:opacity-100">
             <Image
               src="/Cordyceps_sinensis.png"
               alt={herb.name}
@@ -50,7 +51,7 @@ export default function HerbProfileCard({
           </div>
         </div>
 
-        <div className="mt-12 grid grid-cols-2 gap-6 border-t border-white/[0.05] pt-6">
+        <div className="mt-8 grid grid-cols-2 gap-5 border-t border-white/[0.05] pt-5">
           <div>
             <p className="text-[10px] uppercase tracking-[0.18em] text-[#D7DCE2]/35">
               Altitude

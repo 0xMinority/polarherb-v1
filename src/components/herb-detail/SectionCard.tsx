@@ -1,4 +1,6 @@
 import type { Herb } from "../../types/herb";
+import { getDomainColor } from "../../lib/domain-colors";
+import { EvidenceComposition } from "./EvidenceComposition";
 
 interface SectionCardProps {
     index: number;
@@ -78,12 +80,36 @@ export function SectionCard({
                             ["Readiness", `${herb.readiness}/100`],
                             ["Bioactive Power", `Level ${herb.power}`],
                         ].map(([label, value]) => (
-                            <div key={label} className="bg-[#0A141D] p-5">
+                            <div
+                                key={label}
+                                className="p-5"
+                                style={{
+                                    background:
+                                        label === "Functional Domain" ||
+                                            label === "Bioactive Power"
+                                            ? `${getDomainColor(herb.domain)}08`
+                                            : "#0A141D",
+
+                                    border:
+                                        label === "Functional Domain" ||
+                                            label === "Bioactive Power"
+                                            ? `1px solid ${getDomainColor(herb.domain)}18`
+                                            : "1px solid rgba(255,255,255,0.04)",
+                                }}
+                            >
                                 <p className="text-[10px] uppercase tracking-[0.18em] text-[#D7DCE2]/35">
                                     {label}
                                 </p>
 
-                                <p className="mt-4 text-[22px] tracking-[-0.03em] text-[#F3F1EA]">
+                                <p
+                                    className="mt-4 text-[22px] tracking-[-0.03em]"
+                                    style={{
+                                        color:
+                                            label === "Functional Domain"
+                                                ? getDomainColor(herb.domain)
+                                                : "#F3F1EA",
+                                    }}
+                                >
                                     {value}
                                 </p>
                             </div>
@@ -91,6 +117,9 @@ export function SectionCard({
                     </div>
                 </div>
             </div>
+            {title === "Evidence Layer" && (
+                <EvidenceComposition herbName={herb.name} />
+            )}
         </section>
     );
 }
@@ -109,18 +138,6 @@ function getSectionDescription(title: string, herbName: string) {
     };
 
     return descriptions[title] ?? `${herbName} is being evaluated as part of the PolarHerb intelligence system.`;
-}
-
-function getDomainColor(domain: string) {
-    const colors: Record<string, string> = {
-        Energy: "#D0A85C",
-        Immunity: "#7FAE8D",
-        Cognitive: "#8FA7D6",
-        Respiratory: "#6FAFCF",
-        Longevity: "#B08FD6",
-    };
-
-    return colors[domain] ?? "#D7DCE2";
 }
 
 function isPrioritySection(title: string) {

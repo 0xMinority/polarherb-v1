@@ -19,13 +19,25 @@ export function SectionCard({
     return (
         <section
             id={title.toLowerCase().replace(/\s+/g, "-")}
-            className="relative min-h-[520px] scroll-mt-8 overflow-hidden p-10 lg:p-14"
+            className="relative min-h-[620px] scroll-mt-8 overflow-hidden px-12 py-[120px]"
             style={{
                 background: isPrioritySection(title)
                     ? "linear-gradient(to bottom, rgba(255,255,255,0.018), #071016)"
                     : "#071016",
             }}
         >
+            <div
+                className="pointer-events-none absolute inset-0 opacity-60"
+                style={{
+                    background: `
+            radial-gradient(
+                circle at top left,
+                ${getDomainColor(herb.domain)}08,
+                transparent 42%
+            )
+        `,
+                }}
+            />
             <div className="pointer-events-none absolute inset-0">
                 <div className="absolute inset-x-0 top-0 h-[160px] bg-[linear-gradient(to_bottom,rgba(255,255,255,0.018),transparent)]" />
             </div>
@@ -42,7 +54,7 @@ export function SectionCard({
                     </div>
                 </div>
 
-                <h2 className="mt-6 text-[34px] font-medium tracking-[-0.04em] text-[#F3F1EA]">
+                <h2 className="mt-6 text-[44px] font-light tracking-[-0.05em] text-[#F3F1EA]">
                     {title}
                 </h2>
 
@@ -71,11 +83,11 @@ export function SectionCard({
                     </div>
                 </div>
 
-                <p className="mt-6 max-w-[760px] text-[15px] leading-8 text-[#D7DCE2]/62">
+                <p className="mt-10 max-w-[820px] text-[17px] leading-[2.1] text-[#D7DCE2]/68">
                     {getSectionDescription(title, herb.name)}
                 </p>
 
-                <div className="mt-14 max-w-[1100px] border-t border-white/[0.05] pt-10">
+                <div className="mt-16 max-w-[1240px] border-t border-white/[0.05] pt-12">
                     <div className="grid grid-cols-2 gap-[1px] bg-white/[0.05] lg:grid-cols-4">
                         {[
                             ["Altitude Signal", `${herb.altitude}M`],

@@ -34,7 +34,7 @@ export default async function HerbDetailPage({ params }: HerbDetailPageProps) {
       </div>
       <HeroPanel herb={herb} />
 
-      <section className="relative z-10 mx-auto grid max-w-[1540px] grid-cols-1 gap-[1px] bg-white/[0.05] px-8 pb-[140px] lg:grid-cols-[360px_1fr]">
+      <section className="relative z-10 mx-auto grid max-w-[1680px] grid-cols-1 gap-[1px] bg-white/[0.05] px-10 pb-[180px] lg:grid-cols-[380px_1fr]">
         <SidebarNav sections={profileSections} domain={herb.domain} />
 
         <div className="space-y-[1px]">

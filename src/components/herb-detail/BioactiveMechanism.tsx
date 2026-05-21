@@ -30,7 +30,7 @@ export function BioactiveMechanism({
   domain,
 }: BioactiveMechanismProps) {
   return (
-    <div className="mt-14 border border-white/[0.06] bg-[#0A141D] p-6">
+    <div className="mt-16 border border-white/[0.07] bg-[#08121A]/92 p-8 shadow-[0_40px_120px_rgba(0,0,0,0.22)] backdrop-blur-sm">
       <p className="text-[10px] uppercase tracking-[0.2em] text-[#D7DCE2]/35">
         Mechanistic Intelligence
       </p>

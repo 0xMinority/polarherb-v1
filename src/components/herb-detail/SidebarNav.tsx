@@ -50,7 +50,7 @@ export function SidebarNav({
     }, [sections]);
 
     return (
-        <aside className="bg-[#071016] p-8 lg:sticky lg:top-8 lg:self-start">
+        <aside className="bg-[#071016] p-10 lg:sticky lg:top-10 lg:self-start">
             <p
                 className="text-[10px] uppercase tracking-[0.22em]"
                 style={{ color: getDomainColor(domain) }}
@@ -58,7 +58,7 @@ export function SidebarNav({
                 Profile Index
             </p>
 
-            <div className="mt-8 space-y-[1px] bg-white/[0.05]">
+            <div className="mt-10 space-y-[1px] bg-white/[0.05]">
                 {sections.map((section, index) => {
                     const isActive = activeSection === section;
 
@@ -66,7 +66,7 @@ export function SidebarNav({
                         <a
                             href={`#${section.toLowerCase().replace(/\s+/g, "-")}`}
                             key={section}
-                            className="block px-4 py-4 text-[11px] uppercase tracking-[0.18em] transition-colors duration-300"
+                            className="block px-5 py-5 text-[11px] uppercase tracking-[0.2em] transition-all duration-300"
                             style={{
                                 background: isActive
                                     ? `${getDomainColor(domain)}12`
@@ -79,6 +79,10 @@ export function SidebarNav({
                                 borderLeft: isActive
                                     ? `1px solid ${getDomainColor(domain)}`
                                     : "1px solid transparent",
+
+                                boxShadow: isActive
+                                    ? `inset 0 0 40px ${getDomainColor(domain)}08`
+                                    : "none",
                             }}
                         >
                             {String(index + 1).padStart(2, "0")} / {section}

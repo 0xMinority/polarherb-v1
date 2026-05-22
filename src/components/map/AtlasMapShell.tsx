@@ -38,6 +38,13 @@ export default function AtlasMapShell() {
         "Longevity",
     ];
 
+    const MIN_SCALE = 0.8;
+    const MAX_SCALE = 2.4;
+
+    const clampScale = (value: number) => {
+        return Math.min(Math.max(value, MIN_SCALE), MAX_SCALE);
+    };
+
     const visibleHerbs = (
         activeDomain === "All"
             ? herbNodes

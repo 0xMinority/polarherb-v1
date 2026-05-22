@@ -1,4 +1,5 @@
 import type { Herb } from "../../types/herb";
+import type { HerbDetailData } from "../../types/herb-detail";
 import { getDomainColor } from "../../lib/domain-colors";
 import { EvidenceComposition } from "./EvidenceComposition";
 import { BioactiveMechanism } from "./BioactiveMechanism";
@@ -9,12 +10,14 @@ interface SectionCardProps {
     index: number;
     title: string;
     herb: Herb;
+    detail: HerbDetailData;
 }
 
 export function SectionCard({
     index,
     title,
     herb,
+    detail,
 }: SectionCardProps) {
     return (
         <section
@@ -142,7 +145,7 @@ export function SectionCard({
                 <RegulatoryOutlook />
             )}
             {title === "Evidence Layer" && (
-                <EvidenceComposition herbName={herb.name} />
+                <EvidenceComposition herbName={herb.name} evidence={detail.evidence} />
             )}
         </section>
     );

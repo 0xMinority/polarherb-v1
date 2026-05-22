@@ -1,42 +1,17 @@
+import type { HerbEvidenceData } from "../../types/herb-detail";
+
 interface EvidenceCompositionProps {
     herbName: string;
+    evidence: HerbEvidenceData;
 }
 
-const evidenceRows = [
-    {
-        label: "Traditional Use",
-        score: 4,
-        note: "Historical usage signals across regional materia medica traditions.",
-    },
-    {
-        label: "Preclinical Evidence",
-        score: 3,
-        note: "Mechanistic and animal-level findings suggest functional direction.",
-    },
-    {
-        label: "Human Evidence",
-        score: 2,
-        note: "Limited clinical translation; requires stronger human validation.",
-    },
-    {
-        label: "Commercial Adoption",
-        score: 4,
-        note: "Existing market familiarity supports practical product readiness.",
-    },
-    {
-        label: "AI Mechanistic Prediction",
-        score: 3,
-        note: "Computational inference indicates plausible multi-target activity.",
-    },
-];
+export function EvidenceComposition({ herbName, evidence }: EvidenceCompositionProps) {
+    const summaryMetrics = [
+        ["Supporting Literatures", evidence.supportingLiteratures],
+        ["Evidence Confidence", evidence.confidence],
+        ["Breakthrough Potential", evidence.breakthroughPotential],
+    ];
 
-const summaryMetrics = [
-    ["Supporting Literatures", "186+"],
-    ["Evidence Confidence", "Moderate"],
-    ["Breakthrough Potential", "High"],
-];
-
-export function EvidenceComposition({ herbName }: EvidenceCompositionProps) {
     return (
         <div className="relative mt-16 overflow-hidden border border-white/[0.07] bg-[#08121A]/92 p-5 shadow-[0_40px_120px_rgba(0,0,0,0.22)] backdrop-blur-sm md:p-7 xl:p-8">
             <div
@@ -81,7 +56,7 @@ export function EvidenceComposition({ herbName }: EvidenceCompositionProps) {
                 </div>
 
                 <div className="mt-8 space-y-4 xl:mt-10 xl:space-y-5">
-                    {evidenceRows.map(({ label, score, note }) => {
+                    {evidence.layers.map(({ label, score, note }) => {
                         const percentage = (score / 5) * 100;
 
                         return (

@@ -3,6 +3,7 @@ import { SidebarNav } from "../../../src/components/herb-detail/SidebarNav";
 import { HeroPanel } from "../../../src/components/herb-detail/HeroPanel";
 import { notFound } from "next/navigation";
 import { herbNodes } from "../../../src/data/herbs";
+import { getHerbDetailBySlug } from "../../../src/data/herb-details";
 
 const profileSections = [
   "Origin Signal",
@@ -22,8 +23,9 @@ export default async function HerbDetailPage({ params }: HerbDetailPageProps) {
   const { id } = await params;
 
   const herb = herbNodes.find((item) => item.id === id);
+  const detail = getHerbDetailBySlug(id);
 
-  if (!herb) {
+  if (!herb || !detail) {
     notFound();
   }
 
@@ -45,6 +47,7 @@ export default async function HerbDetailPage({ params }: HerbDetailPageProps) {
               index={index}
               title={title}
               herb={herb}
+              detail={detail}
             />
           ))}
         </div>

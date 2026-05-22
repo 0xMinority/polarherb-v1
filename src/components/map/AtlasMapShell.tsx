@@ -4,8 +4,6 @@ import { useRef, useState } from "react";
 import { herbNodes } from "../../data/herbs";
 import type { HerbNode } from "../../data/herbs";
 import HerbMapNode from "./HerbMapNode";
-import ActiveHerbPanel from "./ActiveHerbPanel";
-import AtlasConnectionLines from "./AtlasConnectionLines";
 import { calculateMapFocus } from "../../lib/map-focus";
 import { isHerbLikelyVisible } from "../../lib/map-visibility";
 import { getDomainColor } from "../../lib/domain-colors";
@@ -131,26 +129,6 @@ export default function AtlasMapShell() {
                     Commercialization Readiness
                 </div>
 
-                {selectedHerb && (
-                    <div
-                        className="pointer-events-none absolute h-[320px] w-[320px] rounded-full blur-[120px] transition-all duration-700"
-                        style={{
-                            left: `${selectedHerb.readiness}%`,
-                            top: `${100 - (selectedHerb.altitude / 6000) * 100}%`,
-                            transform: "translate(-50%, -50%)",
-                            background: `radial-gradient(circle, ${getDomainColor(
-                                selectedHerb.domain
-                            )}22 0%, ${getDomainColor(
-                                selectedHerb.domain
-                            )}0A 38%, transparent 72%)`,
-                        }}
-                    />
-                )}
-
-                {selectedHerb && (
-                    <AtlasConnectionLines selectedHerb={selectedHerb} herbs={visibleHerbs} />
-                )}
-
                 {visibleHerbs.map((herb) => (
                     <HerbMapNode
                         key={herb.id}
@@ -234,8 +212,54 @@ export default function AtlasMapShell() {
                     </div>
                 </div>
             </div>
-            {/* Selected herb panel */}
-            {selectedHerb && <ActiveHerbPanel herb={selectedHerb} />}
+            {selectedHerb && (
+                <div className="absolute bottom-8 left-8 z-20 w-[360px] border border-white/[0.07] bg-[#08121A]/92 p-6 shadow-[0_32px_100px_rgba(0,0,0,0.34)] backdrop-blur-[14px]">
+                    <p
+                        className="text-[10px] uppercase tracking-[0.22em]"
+                        style={{ color: getDomainColor(selectedHerb.domain) }}
+                    >
+                        Selected Herb
+                    </p>
+
+                    <h3 className="mt-4 text-[28px] font-light tracking-[-0.05em] text-[#F3F1EA]">
+                        {selectedHerb.name}
+                    </h3>
+
+                    <div className="mt-6 grid grid-cols-2 gap-[1px] bg-white/[0.05]">
+                        {[
+                            ["Altitude", `${selectedHerb.altitude}m`],
+                            ["Domain", selectedHerb.domain],
+                            ["Readiness", `${selectedHerb.readiness}/100`],
+                            ["Power", `Level ${selectedHerb.power}`],
+                        ].map(([label, value]) => (
+                            <div key={label} className="bg-[#071016] p-4">
+                                <p className="text-[9px] uppercase tracking-[0.18em] text-[#D7DCE2]/35">
+                                    {label}
+                                </p>
+
+                                <p
+                                    className="mt-3 text-[14px] text-[#F3F1EA]"
+                                    style={{
+                                        color:
+                                            label === "Domain"
+                                                ? getDomainColor(selectedHerb.domain)
+                                                : "#F3F1EA",
+                                    }}
+                                >
+                                    {value}
+                                </p>
+                            </div>
+                        ))}
+                    </div>
+
+                    <a
+                        href={`/herbs/${selectedHerb.id}`}
+                        className="mt-6 inline-flex text-[10px] uppercase tracking-[0.2em] text-[#D7DCE2]/55 transition-colors hover:text-[#F3F1EA]"
+                    >
+                        Open Herb Profile →
+                    </a>
+                </div>
+            )}
         </div>
     );
 }

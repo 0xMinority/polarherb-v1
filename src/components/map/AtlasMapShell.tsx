@@ -8,6 +8,7 @@ import ActiveHerbPanel from "./ActiveHerbPanel";
 import AtlasConnectionLines from "./AtlasConnectionLines";
 import { calculateMapFocus } from "../../lib/map-focus";
 import { isHerbLikelyVisible } from "../../lib/map-visibility";
+import { getDomainColor } from "../../lib/domain-colors";
 
 export default function AtlasMapShell() {
     const [selectedHerb, setSelectedHerb] = useState<HerbNode | null>(
@@ -49,14 +50,18 @@ export default function AtlasMapShell() {
     );
 
     return (
-        <div className="relative h-[620px] w-full overflow-hidden bg-[#071016]">
+        <div className="relative h-[1080px] w-full overflow-hidden border border-white/[0.07] bg-[#071016]/94 shadow-[0_60px_180px_rgba(0,0,0,0.38)]">
             {/* Atmospheric background */}
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_35%,rgba(208,168,92,0.09),transparent_34%)]" />
-            <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(255,255,255,0.03),transparent_24%,rgba(0,0,0,0.24))]" />
-            <div className="absolute left-[-10%] top-[8%] h-[420px] w-[420px] rounded-full bg-[#D0A85C]/[0.03] blur-[140px]" />
-            <div className="absolute right-[-6%] top-[38%] h-[320px] w-[320px] rounded-full bg-[#7FAE8D]/[0.025] blur-[120px]" />
-            <div className="absolute bottom-[-18%] left-[28%] h-[260px] w-[520px] rounded-full bg-white/[0.02] blur-[140px]" />
-
+            <div
+                className="absolute inset-0 opacity-90"
+                style={{
+                    background: `
+                    radial-gradient(circle at top, rgba(255,255,255,0.04), transparent 34%),
+                    radial-gradient(circle at center, rgba(90,120,160,0.08), transparent 52%),
+                    linear-gradient(to bottom, #061018 0%, #040B11 58%, #03070B 100%)
+                    `,
+                }}
+            />
             {/* Axis frame */}
             <div
                 onMouseDown={(event) => {
@@ -65,7 +70,6 @@ export default function AtlasMapShell() {
                         y: event.clientY - mapOffset.y,
                     };
                 }}
-
                 onMouseMove={(event) => {
                     if (!dragStartRef.current) return;
 
@@ -74,15 +78,12 @@ export default function AtlasMapShell() {
                         y: event.clientY - dragStartRef.current.y,
                     });
                 }}
-
                 onMouseUp={() => {
                     dragStartRef.current = null;
                 }}
-
                 onMouseLeave={() => {
                     dragStartRef.current = null;
                 }}
-
                 onWheel={(event) => {
                     event.preventDefault();
 
@@ -137,8 +138,11 @@ export default function AtlasMapShell() {
                             left: `${selectedHerb.readiness}%`,
                             top: `${100 - (selectedHerb.altitude / 6000) * 100}%`,
                             transform: "translate(-50%, -50%)",
-                            background:
-                                "radial-gradient(circle, rgba(208,168,92,0.10) 0%, rgba(208,168,92,0.03) 38%, transparent 72%)",
+                            background: `radial-gradient(circle, ${getDomainColor(
+                                selectedHerb.domain
+                            )}22 0%, ${getDomainColor(
+                                selectedHerb.domain
+                            )}0A 38%, transparent 72%)`,
                         }}
                     />
                 )}
@@ -165,7 +169,14 @@ export default function AtlasMapShell() {
 
                 {/* Center label */}
                 <div className="absolute left-12 top-10">
-                    <p className="text-[11px] font-medium uppercase tracking-[0.26em] text-[#D0A85C]">
+                    <p
+                        className="text-[11px] font-medium uppercase tracking-[0.26em]"
+                        style={{
+                            color: selectedHerb
+                                ? getDomainColor(selectedHerb.domain)
+                                : "#D0A85C",
+                        }}
+                    >
                         Atlas Map
                     </p>
                     <p className="mt-3 max-w-md text-sm leading-6 text-[#D7DCE2]/65">
@@ -182,10 +193,20 @@ export default function AtlasMapShell() {
                                     key={domain}
                                     type="button"
                                     onClick={() => setActiveDomain(domain)}
-                                    className={`border px-3 py-2 text-[10px] uppercase tracking-[0.18em] transition-all duration-300 ${isActive
-                                        ? "border-[#D0A85C]/40 bg-[#D0A85C]/10 text-[#D0A85C]"
-                                        : "border-white/[0.06] bg-white/[0.02] text-[#D7DCE2]/45 hover:border-white/[0.12] hover:text-[#D7DCE2]/75"
-                                        }`}
+                                    className="border px-3 py-2 text-[10px] uppercase tracking-[0.18em] transition-all duration-300"
+                                    style={{
+                                        borderColor: isActive
+                                            ? `${selectedHerb ? getDomainColor(selectedHerb.domain) : "#D0A85C"}66`
+                                            : "rgba(255,255,255,0.06)",
+                                        background: isActive
+                                            ? `${selectedHerb ? getDomainColor(selectedHerb.domain) : "#D0A85C"}14`
+                                            : "rgba(255,255,255,0.02)",
+                                        color: isActive
+                                            ? selectedHerb
+                                                ? getDomainColor(selectedHerb.domain)
+                                                : "#D0A85C"
+                                            : "rgba(215,220,226,0.45)",
+                                    }}
                                 >
                                     {domain}
                                 </button>

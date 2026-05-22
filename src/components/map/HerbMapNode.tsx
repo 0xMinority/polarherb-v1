@@ -35,32 +35,45 @@ export default function HerbMapNode({
 
   const color = colorMap[herb.domain as keyof typeof colorMap];
   const size = sizeMap[herb.power as keyof typeof sizeMap];
-
   const nodeOpacity = 0.42 + herb.power * 0.12;
 
   return (
     <motion.div
-      className="group absolute cursor-pointer transition-transform duration-500"
+      className="group absolute cursor-pointer"
       onClick={onSelect}
       style={{
         left: `${x}%`,
         top: `${y}%`,
         transform: `translate(-50%, -50%) scale(${isSelected ? 1.18 : 1})`,
+        filter: `
+          drop-shadow(0 0 12px ${color}22)
+          drop-shadow(0 0 28px ${color}14)
+        `,
       }}
       initial={{ opacity: 0, scale: 0.7 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
     >
       <motion.div
-        className="rounded-full"
+        className="rounded-full transition-transform duration-500"
         style={{
           width: `${size}px`,
           height: `${size}px`,
-          background: color,
+          background: `
+            radial-gradient(
+              circle at 30% 30%,
+              rgba(255,255,255,0.22),
+              ${color}CC 32%,
+              ${color}55 68%,
+              rgba(0,0,0,0.16) 100%
+            )
+          `,
+          border: `1px solid ${color}55`,
           opacity: nodeOpacity,
           boxShadow: isSelected
-            ? `0 0 48px ${color}AA`
-            : `0 0 28px ${color}66`,
+            ? `0 0 56px ${color}BB, 0 0 120px ${color}33`
+            : `0 0 32px ${color}66`,
+          backdropFilter: "blur(8px)",
         }}
         animate={{
           opacity: isSelected ? 1 : nodeOpacity * 0.72,
@@ -73,10 +86,22 @@ export default function HerbMapNode({
         }}
       />
 
-      <motion.div className="pointer-events-none absolute left-1/2 top-[-64px] w-[220px] -translate-x-1/2 opacity-0 transition-all duration-300 group-hover:translate-y-[-4px] group-hover:opacity-100">
-        <div className="border border-white/[0.06] bg-[#071016]/92 px-4 py-3 backdrop-blur-[10px]">
+      {isSelected && (
+        <div className="pointer-events-none absolute left-1/2 top-[30px] -translate-x-1/2 whitespace-nowrap text-[10px] uppercase tracking-[0.18em] text-[#F3F1EA]/72">
+          {herb.name}
+        </div>
+      )}
+
+      <motion.div className="pointer-events-none absolute left-1/2 top-[-72px] w-[230px] -translate-x-1/2 opacity-0 transition-all duration-300 group-hover:translate-y-[-4px] group-hover:opacity-100">
+        <div
+          className="border px-5 py-4 shadow-[0_24px_80px_rgba(0,0,0,0.34)] backdrop-blur-[14px]"
+          style={{
+            borderColor: `${color}22`,
+            background: "rgba(7,16,22,0.92)",
+          }}
+        >
           <div className="flex items-center justify-between">
-            <p className="text-[11px] font-medium tracking-[0.01em] text-[#F3F1EA]">
+            <p className="text-[12px] font-medium tracking-[0.01em] text-[#F3F1EA]">
               {herb.name}
             </p>
 
@@ -84,11 +109,12 @@ export default function HerbMapNode({
               className="h-2 w-2 rounded-full"
               style={{
                 background: color,
+                boxShadow: `0 0 18px ${color}88`,
               }}
             />
           </div>
 
-          <div className="mt-2 flex items-center gap-2 text-[9px] uppercase tracking-[0.18em] text-[#D7DCE2]/58">
+          <div className="mt-3 flex items-center gap-2 text-[9px] uppercase tracking-[0.18em] text-[#D7DCE2]/58">
             <span>{herb.altitude}m</span>
             <span>•</span>
             <span>{herb.domain}</span>

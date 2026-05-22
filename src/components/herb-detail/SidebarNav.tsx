@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { getDomainColor } from "../../lib/domain-colors";
 import type { HerbDomain } from "../../types/herb";
 
@@ -9,36 +9,39 @@ interface SidebarNavProps {
     domain: HerbDomain;
 }
 
-export function SidebarNav({
-    sections,
-    domain,
-}: SidebarNavProps) {
+const toSectionId = (section: string) => section.toLowerCase().replace(/\s+/g, "-");
+
+export function SidebarNav({ sections, domain }: SidebarNavProps) {
+    const domainColor = getDomainColor(domain);
+    const sectionIds = useMemo(() => sections.map(toSectionId), [sections]);
     const [activeSection, setActiveSection] = useState(sections[0]);
 
     useEffect(() => {
+        if (!sections.length) return;
+
         const observer = new IntersectionObserver(
             (entries) => {
-                entries.forEach((entry) => {
-                    if (!entry.isIntersecting) return;
+                const visibleEntry = entries
+                    .filter((entry) => entry.isIntersecting)
+                    .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
 
-                    const section = sections.find(
-                        (item) =>
-                            item.toLowerCase().replace(/\s+/g, "-") === entry.target.id
-                    );
+                if (!visibleEntry) return;
 
-                    if (section) {
-                        setActiveSection(section);
-                    }
-                });
+                const activeIndex = sectionIds.findIndex(
+                    (id) => id === visibleEntry.target.id
+                );
+
+                if (activeIndex >= 0) {
+                    setActiveSection(sections[activeIndex]);
+                }
             },
             {
-                rootMargin: "-30% 0px -55% 0px",
-                threshold: 0,
+                rootMargin: "-28% 0px -58% 0px",
+                threshold: [0, 0.12, 0.24, 0.4],
             }
         );
 
-        sections.forEach((section) => {
-            const id = section.toLowerCase().replace(/\s+/g, "-");
+        sectionIds.forEach((id) => {
             const element = document.getElementById(id);
 
             if (element) {
@@ -47,48 +50,58 @@ export function SidebarNav({
         });
 
         return () => observer.disconnect();
-    }, [sections]);
+    }, [sections, sectionIds]);
 
     return (
-        <aside className="bg-[#071016] p-10 lg:sticky lg:top-10 lg:self-start">
-            <p
-                className="text-[10px] uppercase tracking-[0.22em]"
-                style={{ color: getDomainColor(domain) }}
-            >
-                Profile Index
-            </p>
+        <aside className="relative overflow-hidden bg-[#071016]/96 p-5 shadow-[0_32px_100px_rgba(0,0,0,0.22)] backdrop-blur-sm md:p-7 lg:sticky lg:top-10 lg:self-start xl:p-10">
+            <div
+                className="pointer-events-none absolute inset-0 opacity-70"
+                style={{
+                    background: `radial-gradient(circle at top left, ${domainColor}10, transparent 42%)`,
+                }}
+            />
 
-            <div className="mt-10 space-y-[1px] bg-white/[0.05]">
-                {sections.map((section, index) => {
-                    const isActive = activeSection === section;
+            <div className="relative z-10">
+                <p
+                    className="text-[10px] uppercase tracking-[0.22em]"
+                    style={{ color: domainColor }}
+                >
+                    Profile Index
+                </p>
 
-                    return (
-                        <a
-                            href={`#${section.toLowerCase().replace(/\s+/g, "-")}`}
-                            key={section}
-                            className="block px-5 py-5 text-[11px] uppercase tracking-[0.2em] transition-all duration-300"
-                            style={{
-                                background: isActive
-                                    ? `${getDomainColor(domain)}12`
-                                    : "#071016",
+                <div className="mt-6 max-h-[420px] space-y-[1px] overflow-y-auto bg-white/[0.05] md:mt-8 lg:max-h-[calc(100vh-160px)] xl:mt-10">
+                    {sections.map((section, index) => {
+                        const isActive = activeSection === section;
+                        const sectionId = sectionIds[index];
 
-                                color: isActive
-                                    ? getDomainColor(domain)
-                                    : "rgba(215,220,226,0.42)",
-
-                                borderLeft: isActive
-                                    ? `1px solid ${getDomainColor(domain)}`
-                                    : "1px solid transparent",
-
-                                boxShadow: isActive
-                                    ? `inset 0 0 40px ${getDomainColor(domain)}08`
-                                    : "none",
-                            }}
-                        >
-                            {String(index + 1).padStart(2, "0")} / {section}
-                        </a>
-                    );
-                })}
+                        return (
+                            <a
+                                href={`#${sectionId}`}
+                                key={section}
+                                className="group block px-4 py-4 text-[10px] uppercase tracking-[0.18em] transition-all duration-300 md:px-5 md:py-5 md:text-[11px] md:tracking-[0.2em]"
+                                style={{
+                                    background: isActive ? `${domainColor}12` : "#071016",
+                                    color: isActive
+                                        ? domainColor
+                                        : "rgba(215,220,226,0.42)",
+                                    borderLeft: isActive
+                                        ? `1px solid ${domainColor}`
+                                        : "1px solid transparent",
+                                    boxShadow: isActive
+                                        ? `inset 0 0 40px ${domainColor}08`
+                                        : "none",
+                                }}
+                            >
+                                <span className="mr-3 text-[#D7DCE2]/28">
+                                    {String(index + 1).padStart(2, "0")}
+                                </span>
+                                <span className="transition-colors duration-300 group-hover:text-[#F3F1EA]">
+                                    {section}
+                                </span>
+                            </a>
+                        );
+                    })}
+                </div>
             </div>
         </aside>
     );

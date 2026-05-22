@@ -19,7 +19,7 @@ export function SectionCard({
     return (
         <section
             id={title.toLowerCase().replace(/\s+/g, "-")}
-            className="relative min-h-[620px] scroll-mt-8 overflow-hidden px-12 py-[120px]"
+            className="relative min-h-[520px] scroll-mt-8 overflow-hidden px-5 py-[80px] md:px-8 md:py-[100px] xl:min-h-[620px] xl:px-12 xl:py-[120px]"
             style={{
                 background: isPrioritySection(title)
                     ? "linear-gradient(to bottom, rgba(255,255,255,0.018), #071016)"
@@ -54,7 +54,7 @@ export function SectionCard({
                     </div>
                 </div>
 
-                <h2 className="mt-6 text-[44px] font-light tracking-[-0.05em] text-[#F3F1EA]">
+                <h2 className="mt-5 text-[32px] font-light tracking-[-0.05em] text-[#F3F1EA] md:text-[38px] xl:mt-6 xl:text-[44px]">
                     {title}
                 </h2>
 
@@ -83,11 +83,11 @@ export function SectionCard({
                     </div>
                 </div>
 
-                <p className="mt-10 max-w-[820px] text-[17px] leading-[2.1] text-[#D7DCE2]/68">
+                <p className="mt-7 max-w-[820px] text-[15px] leading-8 text-[#D7DCE2]/68 md:text-[16px] xl:mt-10 xl:text-[17px] xl:leading-[2.1]">
                     {getSectionDescription(title, herb.name)}
                 </p>
 
-                <div className="mt-16 max-w-[1240px] border-t border-white/[0.05] pt-12">
+                <div className="mt-12 max-w-[1240px] border-t border-white/[0.05] pt-8 md:pt-10 xl:mt-16 xl:pt-12">
                     <div className="grid grid-cols-2 gap-[1px] bg-white/[0.05] lg:grid-cols-4">
                         {[
                             ["Altitude Signal", `${herb.altitude}M`],
@@ -97,7 +97,7 @@ export function SectionCard({
                         ].map(([label, value]) => (
                             <div
                                 key={label}
-                                className="p-5"
+                                className="p-4 xl:p-5"
                                 style={{
                                     background:
                                         label === "Functional Domain" ||
@@ -117,7 +117,7 @@ export function SectionCard({
                                 </p>
 
                                 <p
-                                    className="mt-4 text-[22px] tracking-[-0.03em]"
+                                    className="mt-3 text-[18px] tracking-[-0.03em] md:text-[20px] xl:mt-4 xl:text-[22px]"
                                     style={{
                                         color:
                                             label === "Functional Domain"

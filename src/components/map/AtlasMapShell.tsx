@@ -57,7 +57,7 @@ export default function AtlasMapShell() {
     );
 
     return (
-        <div className="relative h-[1080px] w-full overflow-hidden border border-white/[0.07] bg-[#071016]/94 shadow-[0_60px_180px_rgba(0,0,0,0.38)]">
+        <div className="relative h-[820px] w-full overflow-hidden border border-white/[0.07] bg-[#071016]/94 shadow-[0_60px_180px_rgba(0,0,0,0.38)] lg:h-[960px] 2xl:h-[1080px]">
             {/* Atmospheric background */}
             <motion.div
                 className="absolute inset-0 opacity-95"
@@ -130,11 +130,12 @@ export default function AtlasMapShell() {
                     event.preventDefault();
 
                     setMapScale((prev) => {
-                        const sensitivity = prev > 1.4 ? 0.0006 : 0.001;
+                        const intensity =
+                            prev > 1.8 ? 0.00045 : prev > 1.3 ? 0.00065 : 0.0009;
 
-                        const next = prev - event.deltaY * sensitivity;
+                        const nextScale = prev - event.deltaY * intensity;
 
-                        return Math.min(Math.max(next, 0.8), 2.4);
+                        return clampScale(nextScale);
                     });
                 }}
                 className="absolute inset-0 will-change-transform transition-transform duration-500 ease-out"
@@ -256,7 +257,7 @@ export default function AtlasMapShell() {
                 </div>
             </div>
             {selectedHerb && (
-                <div className="absolute bottom-8 left-8 z-20 w-[360px] border border-white/[0.07] bg-[#08121A]/92 p-6 shadow-[0_32px_100px_rgba(0,0,0,0.34)] backdrop-blur-[14px]">
+                <div className="absolute bottom-5 left-5 right-5 z-20 border border-white/[0.07] bg-[#08121A]/92 p-5 shadow-[0_32px_100px_rgba(0,0,0,0.34)] backdrop-blur-[14px] md:bottom-8 md:left-8 md:right-auto md:w-[360px] md:p-6">
                     <p
                         className="text-[10px] uppercase tracking-[0.22em]"
                         style={{ color: getDomainColor(selectedHerb.domain) }}
@@ -264,7 +265,7 @@ export default function AtlasMapShell() {
                         Selected Herb
                     </p>
 
-                    <h3 className="mt-4 text-[28px] font-light tracking-[-0.05em] text-[#F3F1EA]">
+                    <h3 className="mt-4 text-[24px] font-light tracking-[-0.05em] text-[#F3F1EA] md:text-[28px]">
                         {selectedHerb.name}
                     </h3>
 

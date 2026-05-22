@@ -52,15 +52,33 @@ export default function AtlasMapShell() {
         <div className="relative h-[1080px] w-full overflow-hidden border border-white/[0.07] bg-[#071016]/94 shadow-[0_60px_180px_rgba(0,0,0,0.38)]">
             {/* Atmospheric background */}
             <div
-                className="absolute inset-0 opacity-90"
+                className="absolute inset-0 opacity-95"
                 style={{
                     background: `
-                    radial-gradient(circle at top, rgba(255,255,255,0.04), transparent 34%),
-                    radial-gradient(circle at center, rgba(90,120,160,0.08), transparent 52%),
-                    linear-gradient(to bottom, #061018 0%, #040B11 58%, #03070B 100%)
-                    `,
+        radial-gradient(circle at top center, rgba(208,168,92,0.10), transparent 24%),
+        radial-gradient(circle at 20% 30%, rgba(90,120,160,0.10), transparent 36%),
+        radial-gradient(circle at 80% 60%, rgba(120,160,220,0.06), transparent 42%),
+        linear-gradient(to bottom, #08131B 0%, #050D14 46%, #03070B 100%)
+        `,
                 }}
             />
+
+            <div
+                className="pointer-events-none absolute inset-0 opacity-[0.045]"
+                style={{
+                    backgroundImage: `
+        linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px)
+        `,
+                    backgroundSize: "120px 120px",
+                    maskImage:
+                        "radial-gradient(circle at center, black 45%, transparent 100%)",
+                }}
+            />
+
+            <div className="pointer-events-none absolute left-1/2 top-1/2 h-[820px] w-[820px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/[0.03]" />
+
+            <div className="pointer-events-none absolute left-1/2 top-1/2 h-[1200px] w-[1200px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/[0.02]" />
             {/* Axis frame */}
             <div
                 onMouseDown={(event) => {

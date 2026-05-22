@@ -5,7 +5,7 @@ import { getDomainColor } from "../../lib/domain-colors";
 import type { HerbDomain } from "../../types/herb";
 
 interface SidebarNavProps {
-    sections: string[];
+    sections: readonly string[];
     domain: HerbDomain;
 }
 

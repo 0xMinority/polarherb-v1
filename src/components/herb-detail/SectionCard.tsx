@@ -143,7 +143,7 @@ export function SectionCard({
               />
             )}
             {title === "Commercial Readiness" && (
-                <CommercialReadiness readiness={herb.readiness} />
+                <CommercialReadiness commercial={detail.commercial} />
             )}
             {title === "Regulatory Outlook" && (
                 <RegulatoryOutlook />

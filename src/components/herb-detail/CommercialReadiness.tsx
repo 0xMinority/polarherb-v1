@@ -1,35 +1,16 @@
-interface CommercialReadinessProps {
-  readiness: number;
-}
+import type { HerbCommercialData } from "../../types/herb-detail";
 
-const readinessFactors = [
-  {
-    label: "Market Familiarity",
-    value: 86,
-    note: "Existing consumer awareness and category recognition.",
-  },
-  {
-    label: "Supply Plausibility",
-    value: 72,
-    note: "Practical sourcing potential under realistic commercial constraints.",
-  },
-  {
-    label: "Formulation Fit",
-    value: 81,
-    note: "Compatibility with functional foods, beverages, and lifestyle products.",
-  },
-  {
-    label: "Brand Differentiation",
-    value: 94,
-    note: "Ability to create distinctive positioning beyond generic botanicals.",
-  },
-];
+interface CommercialReadinessProps {
+  commercial: HerbCommercialData;
+}
 
 const readinessStages = ["Discovery", "Validation", "Formulation", "Launch-Ready"];
 
 export function CommercialReadiness({
-  readiness,
+  commercial,
 }: CommercialReadinessProps) {
+  const { readiness, factors } = commercial;
+
   return (
     <div className="relative mt-16 overflow-hidden border border-white/[0.07] bg-[#08121A]/92 p-5 shadow-[0_40px_120px_rgba(0,0,0,0.22)] backdrop-blur-sm md:p-7 xl:p-8">
       <div
@@ -107,7 +88,7 @@ export function CommercialReadiness({
           </div>
 
           <div className="space-y-[1px] bg-white/[0.05]">
-            {readinessFactors.map((factor) => (
+            {factors.map((factor) => (
               <div key={factor.label} className="bg-[#071016] p-4 md:p-5">
                 <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
                   <div>

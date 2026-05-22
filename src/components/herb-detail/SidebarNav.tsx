@@ -3,9 +3,10 @@
 import { useEffect, useMemo, useState } from "react";
 import { getDomainColor } from "../../lib/domain-colors";
 import type { HerbDomain } from "../../types/herb";
+import type { HerbProfileSection } from "../../config/herb-sections";
 
 interface SidebarNavProps {
-    sections: readonly string[];
+    sections: readonly HerbProfileSection[];
     domain: HerbDomain;
 }
 

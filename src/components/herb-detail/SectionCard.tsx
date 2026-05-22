@@ -5,10 +5,11 @@ import { EvidenceComposition } from "./EvidenceComposition";
 import { BioactiveMechanism } from "./BioactiveMechanism";
 import { CommercialReadiness } from "./CommercialReadiness";
 import { RegulatoryOutlook } from "./RegulatoryOutlook";
+import type { HerbProfileSection } from "../../config/herb-sections";
 
 interface SectionCardProps {
     index: number;
-    title: string;
+    title: HerbProfileSection;
     herb: Herb;
     detail: HerbDetailData;
 }
@@ -155,7 +156,7 @@ export function SectionCard({
     );
 }
 
-function getSectionDescription(title: string, herbName: string) {
+function getSectionDescription(title: HerbProfileSection, herbName: string) {
     const descriptions: Record<string, string> = {
         "Origin Signal": `${herbName} is evaluated through its altitude ecology, origin constraints, and environmental positioning to determine whether its natural habitat can support a differentiated commercialization narrative.`,
 
@@ -171,7 +172,7 @@ function getSectionDescription(title: string, herbName: string) {
     return descriptions[title] ?? `${herbName} is being evaluated as part of the PolarHerb intelligence system.`;
 }
 
-function isPrioritySection(title: string) {
+function isPrioritySection(title: HerbProfileSection) {
     return [
         "Bioactive Mechanism",
         "Commercial Readiness",

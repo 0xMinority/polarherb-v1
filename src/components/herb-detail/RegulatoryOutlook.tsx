@@ -1,33 +1,12 @@
-const regulatoryItems = [
-  {
-    label: "Ingredient Category",
-    value: "Botanical / Herbal Ingredient",
-    note: "Positioned as a functional botanical ingredient rather than a drug-like active.",
-    status: "Defined",
-  },
-  {
-    label: "Claim Boundary",
-    value: "Structure-function positioning preferred",
-    note: "Marketing should avoid disease-treatment language and focus on wellness support.",
-    status: "Controlled",
-  },
-  {
-    label: "Market Entry Risk",
-    value: "Medium",
-    note: "Requires market-specific review before claims, labeling, and product launch.",
-    status: "Watch",
-  },
-  {
-    label: "Documentation Need",
-    value: "Identity, safety, evidence package",
-    note: "Core dossier should include botanical identity, safety basis, and evidence summary.",
-    status: "Required",
-  },
-];
+import type { HerbRegulatoryData } from "../../types/herb-detail";
+
+interface RegulatoryOutlookProps {
+  regulatory: HerbRegulatoryData;
+}
 
 const readinessSteps = ["Identity", "Safety", "Evidence", "Claims", "Market Review"];
 
-export function RegulatoryOutlook() {
+export function RegulatoryOutlook({ regulatory }: RegulatoryOutlookProps) {
   return (
     <div className="relative mt-16 overflow-hidden border border-white/[0.07] bg-[#08121A]/92 p-5 shadow-[0_40px_120px_rgba(0,0,0,0.22)] backdrop-blur-sm md:p-7 xl:p-8">
       <div
@@ -94,7 +73,7 @@ export function RegulatoryOutlook() {
           </div>
 
           <div className="grid grid-cols-1 gap-[1px] bg-white/[0.05] md:grid-cols-2">
-            {regulatoryItems.map((item) => (
+            {regulatory.items.map((item) => (
               <div key={item.label} className="bg-[#071016] p-4 md:p-5">
                 <div className="flex items-start justify-between gap-4">
                   <p className="text-[9px] uppercase tracking-[0.18em] text-[#D7DCE2]/35">

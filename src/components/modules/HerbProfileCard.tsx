@@ -16,7 +16,7 @@ export default function HerbProfileCard({ herb }: HerbProfileCardProps) {
   return (
     <Link href={`/herbs/${herb.id}`} className="block h-full">
       <motion.div
-        className="group relative min-h-[360px] overflow-hidden bg-[#071016] px-8 py-7 transition-colors duration-300"
+        className="group relative min-h-[320px] overflow-hidden bg-[#071016] px-5 py-6 transition-colors duration-300 md:min-h-[340px] md:px-7 xl:min-h-[360px] xl:px-8 xl:py-7"
         whileHover={{
           y: -4,
           backgroundColor: "#08121A",
@@ -43,7 +43,7 @@ export default function HerbProfileCard({ herb }: HerbProfileCardProps) {
                 {herb.domain}
               </p>
 
-              <h3 className="mt-4 text-[24px] font-medium tracking-[-0.05em] text-[#F3F1EA]">
+              <h3 className="mt-4 text-[21px] font-medium tracking-[-0.05em] text-[#F3F1EA] md:text-[22px] xl:text-[24px]">
                 {herb.name}
               </h3>
             </div>
@@ -59,9 +59,9 @@ export default function HerbProfileCard({ herb }: HerbProfileCardProps) {
             </div>
           </div>
 
-          <div className="mt-10 flex h-[210px] items-center justify-center border-y border-white/[0.05] bg-[#040B11]/35">
+          <div className="mt-8 flex h-[170px] items-center justify-center border-y border-white/[0.05] bg-[#040B11]/35 md:h-[190px] xl:mt-10 xl:h-[210px]">
             <div
-              className="relative h-[190px] w-[190px] opacity-85 transition-all duration-500 group-hover:scale-[1.04] group-hover:opacity-100"
+              className="relative h-[150px] w-[150px] opacity-85 transition-all duration-500 group-hover:scale-[1.04] group-hover:opacity-100 md:h-[170px] md:w-[170px] xl:h-[190px] xl:w-[190px]"
               style={{
                 filter: `drop-shadow(0 0 46px ${domainColor}22)`,
               }}
@@ -75,22 +75,22 @@ export default function HerbProfileCard({ herb }: HerbProfileCardProps) {
             </div>
           </div>
 
-          <div className="mt-8 grid grid-cols-2 gap-[1px] bg-white/[0.05]">
+          <div className="mt-6 grid grid-cols-2 gap-[1px] bg-white/[0.05] xl:mt-8">
             {[
               ["Altitude", `${herb.altitude}M`],
               ["Readiness", `${herb.readiness}/100`],
             ].map(([label, value]) => (
-              <div key={label} className="bg-[#071016] p-4">
+              <div key={label} className="bg-[#071016] p-3 md:p-4">
                 <p className="text-[9px] uppercase tracking-[0.18em] text-[#D7DCE2]/35">
                   {label}
                 </p>
 
-                <p className="mt-3 text-[18px] text-[#F3F1EA]">{value}</p>
+                <p className="mt-3 text-[16px] text-[#F3F1EA] md:text-[18px]">{value}</p>
               </div>
             ))}
           </div>
 
-          <div className="mt-8">
+          <div className="mt-6 xl:mt-8">
             <div className="flex items-center justify-between text-[10px] uppercase tracking-[0.18em] text-[#D7DCE2]/35">
               <span>Commercial Signal</span>
               <span>{herb.readiness}%</span>
@@ -115,7 +115,7 @@ export default function HerbProfileCard({ herb }: HerbProfileCardProps) {
             </div>
           </div>
 
-          <div className="mt-auto flex items-center justify-between border-t border-white/[0.05] pt-6">
+          <div className="mt-auto flex items-center justify-between border-t border-white/[0.05] pt-5 xl:pt-6">
             <p className="text-[10px] uppercase tracking-[0.2em] text-[#D7DCE2]/35">
               Intelligence Profile
             </p>

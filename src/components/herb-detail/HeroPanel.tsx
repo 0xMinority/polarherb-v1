@@ -8,8 +8,8 @@ interface HeroPanelProps {
 
 export function HeroPanel({ herb }: HeroPanelProps) {
     return (
-        <section className="relative z-10 mx-auto grid min-h-[1180px] max-w-[1680px] grid-cols-1 gap-[1px] bg-white/[0.05] px-10 py-[150px] lg:grid-cols-[1.02fr_0.98fr]">
-            <div className="relative overflow-hidden bg-[#071016] p-12 lg:p-[72px]">
+        <section className="relative z-10 mx-auto grid min-h-[980px] max-w-[1680px] grid-cols-1 gap-[1px] bg-white/[0.05] px-5 py-[90px] md:px-8 md:py-[120px] xl:min-h-[1180px] xl:px-10 xl:py-[150px] lg:grid-cols-[1.02fr_0.98fr]">
+            <div className="relative overflow-hidden bg-[#071016] p-7 md:p-10 xl:p-[72px]">
 
                 <div
                     className="pointer-events-none absolute inset-0 opacity-80"
@@ -33,11 +33,11 @@ export function HeroPanel({ herb }: HeroPanelProps) {
                         Herb Intelligence Profile
                     </p>
 
-                    <h1 className="mt-10 max-w-4xl text-[92px] font-medium leading-[0.9] tracking-[-0.08em] text-[#F3F1EA]">
+                    <h1 className="mt-8 max-w-4xl text-[54px] font-medium leading-[0.92] tracking-[-0.08em] text-[#F3F1EA] md:text-[72px] xl:mt-10 xl:text-[92px]">
                         {herb.name}
                     </h1>
 
-                    <p className="mt-8 max-w-2xl text-[17px] leading-8 text-[#D7DCE2]/70">
+                    <p className="mt-6 max-w-2xl text-[15px] leading-7 text-[#D7DCE2]/70 md:text-[16px] md:leading-8 xl:mt-8 xl:text-[17px]">
                         {herb.summary}
                     </p>
 
@@ -94,7 +94,7 @@ export function HeroPanel({ herb }: HeroPanelProps) {
                 />
 
                 <div
-                    className="relative h-[620px] w-[620px] opacity-[0.96]"
+                    className="relative h-[320px] w-[320px] opacity-[0.96] md:h-[460px] md:w-[460px] xl:h-[620px] xl:w-[620px]"
                     style={{
                         filter: `drop-shadow(0 0 120px ${getDomainColor(
                             herb.domain

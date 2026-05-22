@@ -3,6 +3,7 @@
 import { useRef, useState } from "react";
 import { herbNodes } from "../../data/herbs";
 import type { HerbNode } from "../../data/herbs";
+import type { HerbDomain } from "../../types/herb";
 import HerbMapNode from "./HerbMapNode";
 import { calculateMapFocus } from "../../lib/map-focus";
 import { isHerbLikelyVisible } from "../../lib/map-visibility";
@@ -13,7 +14,7 @@ export default function AtlasMapShell() {
         herbNodes[0]
     );
 
-    const [activeDomain, setActiveDomain] = useState<string>("All");
+    const [activeDomain, setActiveDomain] = useState<"All" | HerbDomain>("All");
 
     const [mapScale, setMapScale] = useState(1);
 
@@ -27,7 +28,7 @@ export default function AtlasMapShell() {
         y: number;
     } | null>(null);
 
-    const domainFilters = [
+    const domainFilters: Array<"All" | HerbDomain> = [
         "All",
         "Energy",
         "Immunity",
@@ -102,7 +103,6 @@ export default function AtlasMapShell() {
                     transformOrigin: "center center",
                 }}
             >
-
                 <div className="absolute inset-10 border border-white/[0.06]" />
 
                 {/* Vertical grid */}
@@ -165,6 +165,8 @@ export default function AtlasMapShell() {
                     <div className="mt-6 flex flex-wrap gap-2">
                         {domainFilters.map((domain) => {
                             const isActive = activeDomain === domain;
+                            const filterColor =
+                                domain === "All" ? "#D0A85C" : getDomainColor(domain);
 
                             return (
                                 <button
@@ -174,15 +176,13 @@ export default function AtlasMapShell() {
                                     className="border px-3 py-2 text-[10px] uppercase tracking-[0.18em] transition-all duration-300"
                                     style={{
                                         borderColor: isActive
-                                            ? `${selectedHerb ? getDomainColor(selectedHerb.domain) : "#D0A85C"}66`
+                                            ? `${filterColor}66`
                                             : "rgba(255,255,255,0.06)",
                                         background: isActive
-                                            ? `${selectedHerb ? getDomainColor(selectedHerb.domain) : "#D0A85C"}14`
+                                            ? `${filterColor}14`
                                             : "rgba(255,255,255,0.02)",
                                         color: isActive
-                                            ? selectedHerb
-                                                ? getDomainColor(selectedHerb.domain)
-                                                : "#D0A85C"
+                                            ? filterColor
                                             : "rgba(215,220,226,0.45)",
                                     }}
                                 >

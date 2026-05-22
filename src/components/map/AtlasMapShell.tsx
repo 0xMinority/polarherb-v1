@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
+import { motion } from "framer-motion";
 import { herbNodes } from "../../data/herbs";
 import type { HerbNode } from "../../data/herbs";
 import type { HerbDomain } from "../../types/herb";
@@ -51,7 +52,7 @@ export default function AtlasMapShell() {
     return (
         <div className="relative h-[1080px] w-full overflow-hidden border border-white/[0.07] bg-[#071016]/94 shadow-[0_60px_180px_rgba(0,0,0,0.38)]">
             {/* Atmospheric background */}
-            <div
+            <motion.div
                 className="absolute inset-0 opacity-95"
                 style={{
                     background: `
@@ -61,9 +62,18 @@ export default function AtlasMapShell() {
         linear-gradient(to bottom, #08131B 0%, #050D14 46%, #03070B 100%)
         `,
                 }}
+                animate={{
+                    scale: [1, 1.04, 1],
+                    opacity: [0.88, 0.98, 0.88],
+                }}
+                transition={{
+                    duration: 18,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                }}
             />
 
-            <div
+            <motion.div
                 className="pointer-events-none absolute inset-0 opacity-[0.045]"
                 style={{
                     backgroundImage: `
@@ -73,6 +83,14 @@ export default function AtlasMapShell() {
                     backgroundSize: "120px 120px",
                     maskImage:
                         "radial-gradient(circle at center, black 45%, transparent 100%)",
+                }}
+                animate={{
+                    backgroundPosition: ["0px 0px", "120px 120px"],
+                }}
+                transition={{
+                    duration: 48,
+                    repeat: Infinity,
+                    ease: "linear",
                 }}
             />
 

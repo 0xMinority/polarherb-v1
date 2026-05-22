@@ -136,7 +136,11 @@ export function SectionCard({
                 </div>
             </div>
             {title === "Bioactive Mechanism" && (
-                <BioactiveMechanism herbName={herb.name} domain={herb.domain} />
+                <BioactiveMechanism
+                herbName={herb.name}
+                domain={herb.domain}
+                mechanism={detail.mechanism}
+              />
             )}
             {title === "Commercial Readiness" && (
                 <CommercialReadiness readiness={herb.readiness} />

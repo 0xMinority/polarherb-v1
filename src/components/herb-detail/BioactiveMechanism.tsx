@@ -1,45 +1,25 @@
 import { getDomainColor } from "../../lib/domain-colors";
 import type { HerbDomain } from "../../types/herb";
+import type { HerbMechanismData } from "../../types/herb-detail";
 
 interface BioactiveMechanismProps {
   herbName: string;
   domain: HerbDomain;
+  mechanism: HerbMechanismData;
 }
-
-const pathways = [
-  {
-    label: "AMPK Activation",
-    strength: 82,
-    description: "Energy-sensing pathway associated with metabolic resilience and cellular efficiency.",
-  },
-  {
-    label: "Mitochondrial Support",
-    strength: 74,
-    description: "Predicted support for ATP-linked mitochondrial performance and fatigue resistance.",
-  },
-  {
-    label: "Neuroinflammation Modulation",
-    strength: 68,
-    description: "Possible interaction with inflammatory signaling relevant to cognitive recovery.",
-  },
-  {
-    label: "Oxidative Stress Reduction",
-    strength: 91,
-    description: "Strong antioxidant-direction signal across stress response and cellular protection pathways.",
-  },
-];
-
-const mechanismMetrics = [
-  ["Predicted Targets", "42"],
-  ["Pathway Confidence", "High"],
-  ["Mechanistic Convergence", "78%"],
-];
 
 export function BioactiveMechanism({
   herbName,
   domain,
+  mechanism,
 }: BioactiveMechanismProps) {
   const domainColor = getDomainColor(domain);
+
+  const mechanismMetrics = [
+    ["Predicted Targets", mechanism.predictedTargets],
+    ["Pathway Confidence", mechanism.pathwayConfidence],
+    ["Mechanistic Convergence", mechanism.mechanisticConvergence],
+  ];
 
   return (
     <div className="relative mt-16 overflow-hidden border border-white/[0.07] bg-[#08121A]/92 p-5 shadow-[0_40px_120px_rgba(0,0,0,0.22)] backdrop-blur-sm md:p-7 xl:p-8">
@@ -126,7 +106,7 @@ export function BioactiveMechanism({
                   className="mt-5 text-[52px] font-light tracking-[-0.08em] md:text-[64px]"
                   style={{ color: domainColor }}
                 >
-                  78%
+                  {mechanism.mechanisticConvergence}
                 </p>
                 <p className="mx-auto mt-5 max-w-[260px] text-[12px] leading-6 text-[#D7DCE2]/48">
                   Multi-target signal concentration across predicted biological pathways.
@@ -136,7 +116,7 @@ export function BioactiveMechanism({
           </div>
 
           <div className="space-y-[1px] bg-white/[0.05]">
-            {pathways.map((item) => (
+            {mechanism.pathways.map((item) => (
               <div
                 key={item.label}
                 className="bg-[#071016] p-4 transition-opacity duration-300 hover:opacity-90 md:p-5"

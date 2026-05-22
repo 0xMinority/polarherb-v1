@@ -41,7 +41,7 @@ export function HeroPanel({ herb }: HeroPanelProps) {
                         {herb.summary}
                     </p>
 
-                    <div className="mt-14 grid max-w-2xl grid-cols-2 gap-[1px] bg-white/[0.05]">
+                    <div className="mt-10 grid max-w-2xl grid-cols-1 gap-[1px] bg-white/[0.05] md:mt-12 md:grid-cols-2 xl:mt-14">
                         {[
                             ["Altitude", `${herb.altitude}M`],
                             ["Domain", herb.domain],
@@ -50,7 +50,7 @@ export function HeroPanel({ herb }: HeroPanelProps) {
                         ].map(([label, value]) => (
                             <div
                                 key={label}
-                                className="p-6"
+                                className="p-5 xl:p-6"
                                 style={{
                                     background:
                                         label === "Domain" || label === "Bioactive Power"
@@ -67,7 +67,7 @@ export function HeroPanel({ herb }: HeroPanelProps) {
                                 </p>
 
                                 <p
-                                    className="mt-3 text-[18px]"
+                                    className="mt-3 text-[16px] md:text-[18px]"
                                     style={{
                                         color:
                                             label === "Domain"
@@ -83,7 +83,7 @@ export function HeroPanel({ herb }: HeroPanelProps) {
                 </div>
             </div>
 
-            <div className="relative flex items-center justify-center overflow-hidden bg-[#071016] p-10">
+            <div className="relative flex min-h-[520px] items-center justify-center overflow-hidden bg-[#071016] p-6 md:min-h-[680px] md:p-10 xl:min-h-0">
                 <div
                     className="pointer-events-none absolute inset-0 opacity-70"
                     style={{
@@ -92,6 +92,18 @@ export function HeroPanel({ herb }: HeroPanelProps) {
                         )}12, transparent 48%)`,
                     }}
                 />
+
+                <div
+                    className="pointer-events-none absolute left-1/2 top-1/2 h-[360px] w-[360px] -translate-x-1/2 -translate-y-1/2 rounded-full border md:h-[520px] md:w-[520px] xl:h-[720px] xl:w-[720px]"
+                    style={{ borderColor: `${getDomainColor(herb.domain)}18` }}
+                />
+
+                <div
+                    className="pointer-events-none absolute left-1/2 top-1/2 h-[240px] w-[240px] -translate-x-1/2 -translate-y-1/2 rounded-full border md:h-[360px] md:w-[360px] xl:h-[520px] xl:w-[520px]"
+                    style={{ borderColor: `${getDomainColor(herb.domain)}24` }}
+                />
+
+                <div className="pointer-events-none absolute inset-x-8 bottom-8 h-px bg-gradient-to-r from-transparent via-white/[0.08] to-transparent" />
 
                 <div
                     className="relative h-[320px] w-[320px] opacity-[0.96] md:h-[460px] md:w-[460px] xl:h-[620px] xl:w-[620px]"

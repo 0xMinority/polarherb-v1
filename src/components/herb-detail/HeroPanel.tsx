@@ -8,13 +8,18 @@ interface HeroPanelProps {
     detail: HerbDetailData;
 }
 
+const DETAIL_SURFACE = "#071016";
+const DETAIL_TEXT_PRIMARY = "#F3F1EA";
+const DETAIL_TEXT_MUTED = "#D7DCE2";
+const DETAIL_GRID_BORDER = "bg-white/[0.05]";
+
 export function HeroPanel({ herb, detail }: HeroPanelProps) {
     const hero = detail.hero;
     const domainColor = getDomainColor(hero.domain);
 
     return (
-        <section className="relative z-10 mx-auto grid min-h-[980px] max-w-[1680px] grid-cols-1 gap-[1px] bg-white/[0.05] px-5 py-[90px] md:px-8 md:py-[120px] xl:min-h-[1180px] xl:px-10 xl:py-[150px] lg:grid-cols-[1.02fr_0.98fr]">
-            <div className="relative overflow-hidden bg-[#071016] p-7 md:p-10 xl:p-[72px]">
+        <section className={`relative z-10 mx-auto grid min-h-[980px] max-w-[1680px] grid-cols-1 gap-[1px] ${DETAIL_GRID_BORDER} px-5 py-[90px] md:px-8 md:py-[120px] xl:min-h-[1180px] xl:px-10 xl:py-[150px] lg:grid-cols-[1.02fr_0.98fr]`}>
+            <div className="relative overflow-hidden p-7 md:p-10 xl:p-[72px]" style={{ backgroundColor: DETAIL_SURFACE }}>
                 <div
                     className="pointer-events-none absolute inset-0 opacity-80"
                     style={{
@@ -27,15 +32,15 @@ export function HeroPanel({ herb, detail }: HeroPanelProps) {
                         Herb Intelligence Profile
                     </p>
 
-                    <h1 className="mt-8 max-w-4xl text-[54px] font-medium leading-[0.92] tracking-[-0.08em] text-[#F3F1EA] md:text-[72px] xl:mt-10 xl:text-[92px]">
+                    <h1 className="mt-8 max-w-4xl text-[54px] font-medium leading-[0.92] tracking-[-0.08em] md:text-[72px] xl:mt-10 xl:text-[92px]" style={{ color: DETAIL_TEXT_PRIMARY }}>
                         {hero.commonName || herb.name}
                     </h1>
 
-                    <p className="mt-6 max-w-2xl text-[15px] leading-7 text-[#D7DCE2]/70 md:text-[16px] md:leading-8 xl:mt-8 xl:text-[17px]">
+                    <p className="mt-6 max-w-2xl text-[15px] leading-7 md:text-[16px] md:leading-8 xl:mt-8 xl:text-[17px]" style={{ color: `${DETAIL_TEXT_MUTED}B3` }}>
                         {hero.summary}
                     </p>
 
-                    <div className="mt-10 grid max-w-2xl grid-cols-1 gap-[1px] bg-white/[0.05] md:mt-12 md:grid-cols-2 xl:mt-14">
+                    <div className={`mt-10 grid max-w-2xl grid-cols-1 gap-[1px] ${DETAIL_GRID_BORDER} md:mt-12 md:grid-cols-2 xl:mt-14`}>
                         {hero.metrics.map(({ label, value }) => (
                             <div
                                 key={label}
@@ -44,21 +49,21 @@ export function HeroPanel({ herb, detail }: HeroPanelProps) {
                                     background:
                                         label === "Domain" || label === "Bioactive Power"
                                             ? `${domainColor}08`
-                                            : "#071016",
+                                            : DETAIL_SURFACE,
                                     border:
                                         label === "Domain" || label === "Bioactive Power"
                                             ? `1px solid ${domainColor}18`
                                             : "1px solid rgba(255,255,255,0.04)",
                                 }}
                             >
-                                <p className="text-[10px] uppercase tracking-[0.18em] text-[#D7DCE2]/38">
+                                <p className="text-[10px] uppercase tracking-[0.18em]" style={{ color: `${DETAIL_TEXT_MUTED}61` }}>
                                     {label}
                                 </p>
 
                                 <p
                                     className="mt-3 text-[16px] md:text-[18px]"
                                     style={{
-                                        color: label === "Domain" ? domainColor : "#F3F1EA",
+                                        color: label === "Domain" ? domainColor : DETAIL_TEXT_PRIMARY,
                                     }}
                                 >
                                     {value}
@@ -69,7 +74,7 @@ export function HeroPanel({ herb, detail }: HeroPanelProps) {
                 </div>
             </div>
 
-            <div className="relative flex min-h-[520px] items-center justify-center overflow-hidden bg-[#071016] p-6 md:min-h-[680px] md:p-10 xl:min-h-0">
+            <div className="relative flex min-h-[520px] items-center justify-center overflow-hidden p-6 md:min-h-[680px] md:p-10 xl:min-h-0" style={{ backgroundColor: DETAIL_SURFACE }}>
                 <div
                     className="pointer-events-none absolute inset-0 opacity-70"
                     style={{

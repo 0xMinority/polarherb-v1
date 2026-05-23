@@ -16,6 +16,13 @@ interface SectionCardProps {
     detail: HerbDetailData;
 }
 
+const DETAIL_SURFACE = "#071016";
+const DETAIL_CARD_SURFACE = "#0A141D";
+const DETAIL_TEXT_PRIMARY = "#F3F1EA";
+const DETAIL_TEXT_MUTED = "#D7DCE2";
+const DETAIL_ACCENT_GOLD = "#D0A85C";
+const DETAIL_GRID_BORDER = "bg-white/[0.05]";
+
 type SectionRendererProps = {
     herb: Herb;
     detail: HerbDetailData;
@@ -69,8 +76,8 @@ export function SectionCard({
             className="relative min-h-[520px] scroll-mt-8 overflow-hidden px-5 py-[80px] md:px-8 md:py-[100px] xl:min-h-[620px] xl:px-12 xl:py-[120px]"
             style={{
                 background: meta.priority
-                    ? "linear-gradient(to bottom, rgba(255,255,255,0.018), #071016)"
-                    : "#071016",
+                    ? `linear-gradient(to bottom, rgba(255,255,255,0.018), ${DETAIL_SURFACE})`
+                    : DETAIL_SURFACE,
             }}
         >
             <div
@@ -91,22 +98,22 @@ export function SectionCard({
 
             <div className="relative z-10">
                 <div className="flex items-center justify-between border-b border-white/[0.05] pb-5">
-                    <p className="text-[10px] uppercase tracking-[0.22em] text-[#D0A85C]/75">
+                    <p className="text-[10px] uppercase tracking-[0.22em]" style={{ color: `${DETAIL_ACCENT_GOLD}BF` }}>
                         {String(index + 1).padStart(2, "0")}
                     </p>
 
-                    <div className="flex items-center gap-6 text-[10px] uppercase tracking-[0.18em] text-[#D7DCE2]/32">
+                    <div className="flex items-center gap-6 text-[10px] uppercase tracking-[0.18em]" style={{ color: `${DETAIL_TEXT_MUTED}52` }}>
                         <span>Intelligence Layer</span>
                         <span>Structured Signal</span>
                     </div>
                 </div>
 
-                <h2 className="mt-5 text-[32px] font-light tracking-[-0.05em] text-[#F3F1EA] md:text-[38px] xl:mt-6 xl:text-[44px]">
+                <h2 className="mt-5 text-[32px] font-light tracking-[-0.05em] md:text-[38px] xl:mt-6 xl:text-[44px]" style={{ color: DETAIL_TEXT_PRIMARY }}>
                     {title}
                 </h2>
 
                 <div className="mt-8 flex flex-wrap gap-3">
-                    <div className="border border-white/[0.08] px-3 py-2 text-[11px] uppercase tracking-[0.16em] text-[#D7DCE2]/62">
+                    <div className="border border-white/[0.08] px-3 py-2 text-[11px] uppercase tracking-[0.16em]" style={{ color: `${DETAIL_TEXT_MUTED}9E` }}>
                         {herb.altitude}m
                     </div>
 
@@ -121,21 +128,21 @@ export function SectionCard({
                         {herb.domain}
                     </div>
 
-                    <div className="border border-white/[0.08] px-3 py-2 text-[11px] uppercase tracking-[0.16em] text-[#D7DCE2]/62">
+                    <div className="border border-white/[0.08] px-3 py-2 text-[11px] uppercase tracking-[0.16em]" style={{ color: `${DETAIL_TEXT_MUTED}9E` }}>
                         Readiness {herb.readiness}
                     </div>
 
-                    <div className="border border-white/[0.08] px-3 py-2 text-[11px] uppercase tracking-[0.16em] text-[#D7DCE2]/62">
+                    <div className="border border-white/[0.08] px-3 py-2 text-[11px] uppercase tracking-[0.16em]" style={{ color: `${DETAIL_TEXT_MUTED}9E` }}>
                         Power {herb.power}
                     </div>
                 </div>
 
-                <p className="mt-7 max-w-[820px] text-[15px] leading-8 text-[#D7DCE2]/68 md:text-[16px] xl:mt-10 xl:text-[17px] xl:leading-[2.1]">
+                <p className="mt-7 max-w-[820px] text-[15px] leading-8 md:text-[16px] xl:mt-10 xl:text-[17px] xl:leading-[2.1]" style={{ color: `${DETAIL_TEXT_MUTED}AD` }}>
                     {meta.description}
                 </p>
 
                 <div className="mt-12 max-w-[1240px] border-t border-white/[0.05] pt-8 md:pt-10 xl:mt-16 xl:pt-12">
-                    <div className="grid grid-cols-2 gap-[1px] bg-white/[0.05] lg:grid-cols-4">
+                    <div className={`grid grid-cols-2 gap-[1px] ${DETAIL_GRID_BORDER} lg:grid-cols-4`}>
                         {[
                             ["Altitude Signal", `${herb.altitude}M`],
                             ["Functional Domain", herb.domain],
@@ -150,7 +157,7 @@ export function SectionCard({
                                         label === "Functional Domain" ||
                                             label === "Bioactive Power"
                                             ? `${getDomainColor(herb.domain)}08`
-                                            : "#0A141D",
+                                            : DETAIL_CARD_SURFACE,
 
                                     border:
                                         label === "Functional Domain" ||
@@ -159,7 +166,7 @@ export function SectionCard({
                                             : "1px solid rgba(255,255,255,0.04)",
                                 }}
                             >
-                                <p className="text-[10px] uppercase tracking-[0.18em] text-[#D7DCE2]/35">
+                                <p className="text-[10px] uppercase tracking-[0.18em]" style={{ color: `${DETAIL_TEXT_MUTED}59` }}>
                                     {label}
                                 </p>
 
@@ -169,7 +176,7 @@ export function SectionCard({
                                         color:
                                             label === "Functional Domain"
                                                 ? getDomainColor(herb.domain)
-                                                : "#F3F1EA",
+                                                : DETAIL_TEXT_PRIMARY,
                                     }}
                                 >
                                     {value}

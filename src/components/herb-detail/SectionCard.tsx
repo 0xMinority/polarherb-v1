@@ -16,6 +16,46 @@ interface SectionCardProps {
     detail: HerbDetailData;
 }
 
+type SectionRendererProps = {
+    herb: Herb;
+    detail: HerbDetailData;
+};
+
+const sectionRenderers: Partial<
+    Record<HerbProfileSection, ({ herb, detail }: SectionRendererProps) => React.ReactNode>
+> = {
+    "Bioactive Mechanism": ({ herb, detail }) => (
+        <BioactiveMechanism
+            herbName={herb.name}
+            domain={herb.domain}
+            mechanism={detail.mechanism}
+        />
+    ),
+    "Commercial Readiness": ({ detail }) => (
+        <CommercialReadiness commercial={detail.commercial} />
+    ),
+    "Regulatory Outlook": ({ detail }) => (
+        <RegulatoryOutlook regulatory={detail.regulatory} />
+    ),
+    "Evidence Layer": ({ herb, detail }) => (
+        <EvidenceComposition herbName={herb.name} evidence={detail.evidence} />
+    ),
+};
+
+function renderSectionContent(
+    title: HerbProfileSection,
+    herb: Herb,
+    detail: HerbDetailData
+) {
+    const SectionRenderer = sectionRenderers[title];
+
+    if (!SectionRenderer) {
+        return null;
+    }
+
+    return <SectionRenderer herb={herb} detail={detail} />;
+}
+
 export function SectionCard({
     index,
     title,
@@ -139,22 +179,7 @@ export function SectionCard({
                     </div>
                 </div>
             </div>
-            {title === "Bioactive Mechanism" && (
-                <BioactiveMechanism
-                    herbName={herb.name}
-                    domain={herb.domain}
-                    mechanism={detail.mechanism}
-                />
-            )}
-            {title === "Commercial Readiness" && (
-                <CommercialReadiness commercial={detail.commercial} />
-            )}
-            {title === "Regulatory Outlook" && (
-                <RegulatoryOutlook regulatory={detail.regulatory} />
-            )}
-            {title === "Evidence Layer" && (
-                <EvidenceComposition herbName={herb.name} evidence={detail.evidence} />
-            )}
+            {renderSectionContent(title, herb, detail)}
         </section>
     );
 }

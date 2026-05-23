@@ -154,6 +154,10 @@ export const herbDetails: HerbDetailData[] = [
   },
 ];
 
+const herbDetailBySlug = new Map(
+  herbDetails.map((herb) => [herb.slug, herb] as const)
+);
+
 export function getHerbDetailBySlug(slug: string) {
-  return herbDetails.find((herb) => herb.slug === slug);
+  return herbDetailBySlug.get(slug);
 }

@@ -12,7 +12,6 @@ interface SidebarNavProps {
 }
 
 const DETAIL_SURFACE = "#071016";
-const DETAIL_TEXT_PRIMARY = "#F3F1EA";
 const DETAIL_TEXT_MUTED = "#D7DCE2";
 const DETAIL_GRID_BORDER = "bg-white/[0.05]";
 

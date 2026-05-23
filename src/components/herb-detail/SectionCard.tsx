@@ -6,6 +6,7 @@ import { BioactiveMechanism } from "./BioactiveMechanism";
 import { CommercialReadiness } from "./CommercialReadiness";
 import { RegulatoryOutlook } from "./RegulatoryOutlook";
 import type { HerbProfileSection } from "../../config/herb-sections";
+import { herbSectionMeta } from "../../config/herb-section-meta";
 
 interface SectionCardProps {
     index: number;
@@ -20,12 +21,13 @@ export function SectionCard({
     herb,
     detail,
 }: SectionCardProps) {
+    const meta = herbSectionMeta[title];
     return (
         <section
             id={title.toLowerCase().replace(/\s+/g, "-")}
             className="relative min-h-[520px] scroll-mt-8 overflow-hidden px-5 py-[80px] md:px-8 md:py-[100px] xl:min-h-[620px] xl:px-12 xl:py-[120px]"
             style={{
-                background: isPrioritySection(title)
+                background: meta.priority
                     ? "linear-gradient(to bottom, rgba(255,255,255,0.018), #071016)"
                     : "#071016",
             }}
@@ -88,7 +90,7 @@ export function SectionCard({
                 </div>
 
                 <p className="mt-7 max-w-[820px] text-[15px] leading-8 text-[#D7DCE2]/68 md:text-[16px] xl:mt-10 xl:text-[17px] xl:leading-[2.1]">
-                    {getSectionDescription(title, herb.name)}
+                    {meta.description}
                 </p>
 
                 <div className="mt-12 max-w-[1240px] border-t border-white/[0.05] pt-8 md:pt-10 xl:mt-16 xl:pt-12">
@@ -154,28 +156,4 @@ export function SectionCard({
             )}
         </section>
     );
-}
-
-function getSectionDescription(title: HerbProfileSection, herbName: string) {
-    const descriptions: Record<string, string> = {
-        "Origin Signal": `${herbName} is evaluated through its altitude ecology, origin constraints, and environmental positioning to determine whether its natural habitat can support a differentiated commercialization narrative.`,
-
-        "Bioactive Mechanism": `${herbName} is analyzed through its dominant functional domain, biological strength level, and future compound-level evidence layers to identify its most credible mechanism direction.`,
-
-        "Commercial Readiness": `${herbName} is assessed through readiness scoring, market familiarity, supply-chain plausibility, and suitability for ingredient-led product development.`,
-
-        "Regulatory Outlook": `${herbName} will be mapped against market-entry constraints, claim boundaries, ingredient category risks, and documentation requirements across target jurisdictions.`,
-
-        "Evidence Layer": `${herbName} will aggregate traditional use, preclinical findings, human evidence, commercial adoption, and AI-assisted mechanistic signals into a transparent evidence composition system.`,
-    };
-
-    return descriptions[title] ?? `${herbName} is being evaluated as part of the PolarHerb intelligence system.`;
-}
-
-function isPrioritySection(title: HerbProfileSection) {
-    return [
-        "Bioactive Mechanism",
-        "Commercial Readiness",
-        "Evidence Layer",
-    ].includes(title);
 }

@@ -4,13 +4,12 @@ import { useEffect, useMemo, useState } from "react";
 import { getDomainColor } from "../../lib/domain-colors";
 import type { HerbDomain } from "../../types/herb";
 import type { HerbProfileSection } from "../../config/herb-sections";
+import { toSectionId } from "../../lib/section-id";
 
 interface SidebarNavProps {
     sections: readonly HerbProfileSection[];
     domain: HerbDomain;
 }
-
-const toSectionId = (section: string) => section.toLowerCase().replace(/\s+/g, "-");
 
 export function SidebarNav({ sections, domain }: SidebarNavProps) {
     const domainColor = getDomainColor(domain);

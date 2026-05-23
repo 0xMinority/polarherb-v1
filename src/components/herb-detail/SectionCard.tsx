@@ -7,6 +7,7 @@ import { CommercialReadiness } from "./CommercialReadiness";
 import { RegulatoryOutlook } from "./RegulatoryOutlook";
 import type { HerbProfileSection } from "../../config/herb-sections";
 import { herbSectionMeta } from "../../config/herb-section-meta";
+import { toSectionId } from "../../lib/section-id";
 
 interface SectionCardProps {
     index: number;
@@ -24,7 +25,7 @@ export function SectionCard({
     const meta = herbSectionMeta[title];
     return (
         <section
-            id={title.toLowerCase().replace(/\s+/g, "-")}
+            id={toSectionId(title)}
             className="relative min-h-[520px] scroll-mt-8 overflow-hidden px-5 py-[80px] md:px-8 md:py-[100px] xl:min-h-[620px] xl:px-12 xl:py-[120px]"
             style={{
                 background: meta.priority

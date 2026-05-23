@@ -11,14 +11,17 @@ interface SidebarNavProps {
     domain: HerbDomain;
 }
 
+const DETAIL_SURFACE = "#071016";
+const DETAIL_TEXT_PRIMARY = "#F3F1EA";
+const DETAIL_TEXT_MUTED = "#D7DCE2";
+const DETAIL_GRID_BORDER = "bg-white/[0.05]";
+
 export function SidebarNav({ sections, domain }: SidebarNavProps) {
     const domainColor = getDomainColor(domain);
     const sectionIds = useMemo(() => sections.map(toSectionId), [sections]);
     const [activeSection, setActiveSection] = useState<HerbProfileSection | undefined>(
         sections[0]
     );
-
-
     useEffect(() => {
         if (!sections.length) return;
 
@@ -56,7 +59,7 @@ export function SidebarNav({ sections, domain }: SidebarNavProps) {
     }, [sections, sectionIds]);
 
     return (
-        <aside className="relative overflow-hidden bg-[#071016]/96 p-5 shadow-[0_32px_100px_rgba(0,0,0,0.22)] backdrop-blur-sm md:p-7 lg:sticky lg:top-10 lg:self-start xl:p-10">
+        <aside className="relative overflow-hidden p-5 shadow-[0_32px_100px_rgba(0,0,0,0.22)] backdrop-blur-sm md:p-7 lg:sticky lg:top-10 lg:self-start xl:p-10" style={{ backgroundColor: `${DETAIL_SURFACE}F5` }}>
             <div
                 className="pointer-events-none absolute inset-0 opacity-70"
                 style={{
@@ -72,7 +75,7 @@ export function SidebarNav({ sections, domain }: SidebarNavProps) {
                     Profile Index
                 </p>
 
-                <div className="mt-6 max-h-[420px] space-y-[1px] overflow-y-auto bg-white/[0.05] md:mt-8 lg:max-h-[calc(100vh-160px)] xl:mt-10">
+                <div className={`mt-6 max-h-[420px] space-y-[1px] overflow-y-auto ${DETAIL_GRID_BORDER} md:mt-8 lg:max-h-[calc(100vh-160px)] xl:mt-10`}>
                     {sections.map((section, index) => {
                         const isActive = activeSection === section || (!activeSection && index === 0);
                         const sectionId = sectionIds[index];
@@ -83,10 +86,10 @@ export function SidebarNav({ sections, domain }: SidebarNavProps) {
                                 key={section}
                                 className="group block px-4 py-4 text-[10px] uppercase tracking-[0.18em] transition-all duration-300 md:px-5 md:py-5 md:text-[11px] md:tracking-[0.2em]"
                                 style={{
-                                    background: isActive ? `${domainColor}12` : "#071016",
+                                    background: isActive ? `${domainColor}12` : DETAIL_SURFACE,
                                     color: isActive
                                         ? domainColor
-                                        : "rgba(215,220,226,0.42)",
+                                        : `${DETAIL_TEXT_MUTED}6B`,
                                     borderLeft: isActive
                                         ? `1px solid ${domainColor}`
                                         : "1px solid transparent",
@@ -95,10 +98,10 @@ export function SidebarNav({ sections, domain }: SidebarNavProps) {
                                         : "none",
                                 }}
                             >
-                                <span className="mr-3 text-[#D7DCE2]/28">
+                                <span className="mr-3" style={{ color: `${DETAIL_TEXT_MUTED}47` }}>
                                     {String(index + 1).padStart(2, "0")}
                                 </span>
-                                <span className="transition-colors duration-300 group-hover:text-[#F3F1EA]">
+                                <span className="transition-colors duration-300 group-hover:text-[#F3F1EA]" style={{ color: isActive ? domainColor : undefined }}>
                                     {section}
                                 </span>
                             </a>

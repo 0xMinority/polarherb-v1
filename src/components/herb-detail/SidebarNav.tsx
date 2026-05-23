@@ -14,7 +14,10 @@ interface SidebarNavProps {
 export function SidebarNav({ sections, domain }: SidebarNavProps) {
     const domainColor = getDomainColor(domain);
     const sectionIds = useMemo(() => sections.map(toSectionId), [sections]);
-    const [activeSection, setActiveSection] = useState(sections[0]);
+    const [activeSection, setActiveSection] = useState<HerbProfileSection | undefined>(
+        sections[0]
+    );
+
 
     useEffect(() => {
         if (!sections.length) return;
@@ -71,7 +74,7 @@ export function SidebarNav({ sections, domain }: SidebarNavProps) {
 
                 <div className="mt-6 max-h-[420px] space-y-[1px] overflow-y-auto bg-white/[0.05] md:mt-8 lg:max-h-[calc(100vh-160px)] xl:mt-10">
                     {sections.map((section, index) => {
-                        const isActive = activeSection === section;
+                        const isActive = activeSection === section || (!activeSection && index === 0);
                         const sectionId = sectionIds[index];
 
                         return (

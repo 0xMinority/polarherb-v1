@@ -6,6 +6,12 @@ import { herbNodes } from "../../../src/data/herbs";
 import { getHerbDetailBySlug } from "../../../src/data/herb-details";
 import { herbProfileSections } from "../../../src/config/herb-sections";
 
+export function generateStaticParams() {
+  return herbNodes.map((herb) => ({
+    id: herb.id,
+  }));
+}
+
 interface HerbDetailPageProps {
   params: Promise<{
     id: string;
@@ -34,11 +40,11 @@ export default async function HerbDetailPage({ params }: HerbDetailPageProps) {
         <SidebarNav sections={herbProfileSections} domain={herb.domain} />
 
         <div className="space-y-[1px]">
-          {herbProfileSections.map((title, index) => (
+          {herbProfileSections.map((section, index) => (
             <SectionCard
-              key={title}
+              key={section}
               index={index}
-              title={title}
+              title={section}
               herb={herb}
               detail={detail}
             />

@@ -28,7 +28,7 @@ export function BioactiveMechanism({
   ];
 
   return (
-    <div className="relative mt-16 overflow-hidden border border-white/[0.07] p-5 shadow-[0_40px_120px_rgba(0,0,0,0.22)] backdrop-blur-sm md:p-7 xl:p-8" style={{ backgroundColor: `${DETAIL_PANEL_SURFACE}EB` }}>
+    <div className="relative mt-16 overflow-hidden border border-white/[0.07] p-6 shadow-[0_40px_120px_rgba(0,0,0,0.22)] backdrop-blur-sm md:p-8 xl:p-8" style={{ backgroundColor: `${DETAIL_PANEL_SURFACE}EB` }}>
       <div
         className="pointer-events-none absolute inset-0 opacity-75"
         style={{
@@ -44,7 +44,7 @@ export function BioactiveMechanism({
         <div className="flex flex-col gap-6 xl:flex-row xl:items-end xl:justify-between">
           <div>
             <p
-              className="text-[10px] uppercase tracking-[0.22em]"
+              className="text-[12px] uppercase tracking-[0.22em]"
               style={{ color: domainColor }}
             >
               Mechanistic Intelligence
@@ -56,7 +56,7 @@ export function BioactiveMechanism({
           </div>
 
           <div
-            className="border px-4 py-3 text-[10px] uppercase tracking-[0.18em]"
+            className="border px-4 py-3 text-[12px] uppercase tracking-[0.18em]"
             style={{
               borderColor: `${domainColor}22`,
               background: `${domainColor}08`,
@@ -69,8 +69,8 @@ export function BioactiveMechanism({
 
         <div className={`mt-8 grid grid-cols-1 gap-[1px] ${DETAIL_GRID_BORDER} md:grid-cols-3 xl:mt-10`}>
           {mechanismMetrics.map(([label, value]) => (
-            <div key={label} className="p-4 md:p-5" style={{ backgroundColor: DETAIL_SURFACE }}>
-              <p className="text-[9px] uppercase tracking-[0.18em]" style={{ color: `${DETAIL_TEXT_MUTED}59` }}>
+            <div key={label} className="p-5 md:p-6" style={{ backgroundColor: DETAIL_SURFACE }}>
+              <p className="text-[11px] uppercase tracking-[0.18em]" style={{ color: `${DETAIL_TEXT_MUTED}59` }}>
                 {label}
               </p>
 
@@ -87,7 +87,7 @@ export function BioactiveMechanism({
         </div>
 
         <div className={`mt-8 grid grid-cols-1 gap-[1px] ${DETAIL_GRID_BORDER} xl:mt-10 xl:grid-cols-[0.92fr_1.08fr]`}>
-          <div className="relative min-h-[320px] overflow-hidden p-5 md:p-7" style={{ backgroundColor: DETAIL_SURFACE }}>
+          <div className="relative min-h-[320px] overflow-hidden p-6 md:p-8" style={{ backgroundColor: DETAIL_SURFACE }}>
             <div
               className="pointer-events-none absolute left-1/2 top-1/2 h-[260px] w-[260px] -translate-x-1/2 -translate-y-1/2 rounded-full border"
               style={{ borderColor: `${domainColor}22` }}
@@ -106,7 +106,7 @@ export function BioactiveMechanism({
 
             <div className="relative z-10 flex h-full min-h-[280px] items-center justify-center">
               <div className="text-center">
-                <p className="text-[10px] uppercase tracking-[0.22em]" style={{ color: `${DETAIL_TEXT_MUTED}61` }}>
+                <p className="text-[12px] uppercase tracking-[0.22em]" style={{ color: `${DETAIL_TEXT_MUTED}61` }}>
                   Pathway Convergence
                 </p>
                 <p
@@ -115,7 +115,7 @@ export function BioactiveMechanism({
                 >
                   {mechanism.mechanisticConvergence}
                 </p>
-                <p className="mx-auto mt-5 max-w-[260px] text-[12px] leading-6" style={{ color: `${DETAIL_TEXT_MUTED}7A` }}>
+                <p className="mx-auto mt-5 max-w-[260px] text-[14px] leading-6" style={{ color: `${DETAIL_TEXT_MUTED}7A` }}>
                   Multi-target signal concentration across predicted biological pathways.
                 </p>
               </div>
@@ -126,18 +126,18 @@ export function BioactiveMechanism({
             {mechanism.pathways.map((item) => (
               <div
                 key={item.label}
-                className="p-4 transition-opacity duration-300 hover:opacity-90 md:p-5"
+                className="p-5 transition-opacity duration-300 hover:opacity-90 md:p-6"
                 style={{ backgroundColor: DETAIL_SURFACE }}
               >
                 <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
                   <div>
-                    <p className="text-[13px]" style={{ color: `${DETAIL_TEXT_PRIMARY}E0` }}>{item.label}</p>
-                    <p className="mt-2 max-w-[580px] text-[12px] leading-6" style={{ color: `${DETAIL_TEXT_MUTED}73` }}>
+                    <p className="text-[15px]" style={{ color: `${DETAIL_TEXT_PRIMARY}E0` }}>{item.label}</p>
+                    <p className="mt-2 max-w-[580px] text-[14px] leading-6" style={{ color: `${DETAIL_TEXT_MUTED}73` }}>
                       {item.description}
                     </p>
                   </div>
 
-                  <p className="text-[11px] uppercase tracking-[0.18em]" style={{ color: `${DETAIL_TEXT_MUTED}6B` }}>
+                  <p className="text-[13px] uppercase tracking-[0.18em]" style={{ color: `${DETAIL_TEXT_MUTED}6B` }}>
                     {item.strength}%
                   </p>
                 </div>

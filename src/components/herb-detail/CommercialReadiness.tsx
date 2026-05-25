@@ -19,7 +19,7 @@ export function CommercialReadiness({
   const { readiness, factors } = commercial;
 
   return (
-    <div className="relative mt-16 overflow-hidden border border-white/[0.07] p-5 shadow-[0_40px_120px_rgba(0,0,0,0.22)] backdrop-blur-sm md:p-7 xl:p-8" style={{ backgroundColor: `${DETAIL_PANEL_SURFACE}EB` }}>
+    <div className="relative mt-16 overflow-hidden border border-white/[0.07] p-6 shadow-[0_40px_120px_rgba(0,0,0,0.22)] backdrop-blur-sm md:p-8 xl:p-8" style={{ backgroundColor: `${DETAIL_PANEL_SURFACE}EB` }}>
       <div
         className="pointer-events-none absolute inset-0 opacity-70"
         style={{
@@ -34,7 +34,7 @@ export function CommercialReadiness({
       <div className="relative z-10">
         <div className="flex flex-col gap-6 xl:flex-row xl:items-end xl:justify-between">
           <div>
-            <p className="text-[10px] uppercase tracking-[0.22em]" style={{ color: `${DETAIL_ACCENT_GOLD}E0` }}>
+            <p className="text-[12px] uppercase tracking-[0.22em]" style={{ color: `${DETAIL_ACCENT_GOLD}E0` }}>
               Commercial Readiness
             </p>
 
@@ -43,16 +43,16 @@ export function CommercialReadiness({
             </h3>
           </div>
 
-          <div className="border border-white/[0.06] px-4 py-3 text-[10px] uppercase tracking-[0.18em]" style={{ backgroundColor: `${DETAIL_SURFACE}B3`, color: `${DETAIL_TEXT_MUTED}73` }}>
+          <div className="border border-white/[0.06] px-4 py-3 text-[12px] uppercase tracking-[0.18em]" style={{ backgroundColor: `${DETAIL_SURFACE}B3`, color: `${DETAIL_TEXT_MUTED}73` }}>
             Go-to-market signal model
           </div>
         </div>
 
         <div className={`mt-8 grid grid-cols-1 gap-[1px] ${DETAIL_GRID_BORDER} xl:mt-10 xl:grid-cols-[0.82fr_1.18fr]`}>
-          <div className="relative overflow-hidden p-5 md:p-7" style={{ backgroundColor: DETAIL_SURFACE }}>
+          <div className="relative overflow-hidden p-6 md:p-8" style={{ backgroundColor: DETAIL_SURFACE }}>
             <div className="flex min-h-[300px] flex-col justify-between">
               <div>
-                <p className="text-[10px] uppercase tracking-[0.2em]" style={{ color: `${DETAIL_TEXT_MUTED}59` }}>
+                <p className="text-[12px] uppercase tracking-[0.2em]" style={{ color: `${DETAIL_TEXT_MUTED}59` }}>
                   Readiness Index
                 </p>
 
@@ -60,7 +60,7 @@ export function CommercialReadiness({
                   <p className="text-[72px] font-light leading-none tracking-[-0.09em] md:text-[92px]" style={{ color: DETAIL_TEXT_PRIMARY }}>
                     {readiness}
                   </p>
-                  <p className="pb-3 text-[13px] uppercase tracking-[0.18em]" style={{ color: `${DETAIL_TEXT_MUTED}6B` }}>
+                  <p className="pb-3 text-[15px] uppercase tracking-[0.18em]" style={{ color: `${DETAIL_TEXT_MUTED}6B` }}>
                     / 100
                   </p>
                 </div>
@@ -80,7 +80,7 @@ export function CommercialReadiness({
                   return (
                     <div
                       key={stage}
-                      className={`p-3 text-center text-[9px] uppercase tracking-[0.16em] ${
+                      className={`p-3.5 text-center text-[11px] uppercase tracking-[0.16em] ${
                         isReached
                           ? "bg-[#D0A85C]/12"
                           : "bg-[#08121A]"
@@ -97,18 +97,18 @@ export function CommercialReadiness({
 
           <div className={`space-y-[1px] ${DETAIL_GRID_BORDER}`}>
             {factors.map((factor) => (
-              <div key={factor.label} className="p-4 md:p-5" style={{ backgroundColor: DETAIL_SURFACE }}>
-                <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
+              <div key={factor.label} className="p-5 md:p-6" style={{ backgroundColor: DETAIL_SURFACE }}>
+                <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
                   <div>
-                    <p className="text-[13px]" style={{ color: `${DETAIL_TEXT_PRIMARY}E0` }}>
+                    <p className="text-[15px]" style={{ color: `${DETAIL_TEXT_PRIMARY}E0` }}>
                       {factor.label}
                     </p>
-                    <p className="mt-2 max-w-[580px] text-[12px] leading-6" style={{ color: `${DETAIL_TEXT_MUTED}73` }}>
+                    <p className="mt-2 max-w-[580px] text-[14px] leading-6" style={{ color: `${DETAIL_TEXT_MUTED}73` }}>
                       {factor.note}
                     </p>
                   </div>
 
-                  <p className="text-[11px] uppercase tracking-[0.18em]" style={{ color: `${DETAIL_TEXT_MUTED}6B` }}>
+                  <p className="text-[13px] uppercase tracking-[0.18em]" style={{ color: `${DETAIL_TEXT_MUTED}6B` }}>
                     {factor.value}%
                   </p>
                 </div>

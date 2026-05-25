@@ -30,6 +30,11 @@ export interface HeroMetric {
   value: string;
 }
 
+export interface HeroFunctionalDomain {
+  domain: HerbDomain;
+  score: number;
+}
+
 export interface HerbEvidenceData {
   supportingLiteratures: string;
   confidence: string;
@@ -68,13 +73,20 @@ export interface HerbDetailData {
     summary: string;
 
     altitude: string;
+    region: string;
+    regionDetail?: string;
     developmentStage: string;
     bioactivePower: string;
     domain: HerbDomain;
 
     heroImage: string;
+    atlasId: string;
 
-    metrics: HeroMetric[];
+    functionalDomains: HeroFunctionalDomain[];
+    developmentScore: number;
+    developmentBlurb: string;
+
+    metrics?: HeroMetric[];
   };
 
   originNarrative: HerbOriginNarrative;

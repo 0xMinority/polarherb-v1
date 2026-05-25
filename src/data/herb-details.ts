@@ -11,19 +11,26 @@ export const herbDetails: HerbDetailData[] = [
       summary:
         "Cordyceps Sinensis represents one of the most commercially recognized high-altitude bioresources, combining strong cultural familiarity, energy-positioning potential, and emerging mechanistic relevance across resilience, fatigue, and immune-support narratives.",
 
-      altitude: "3,000–5,000m",
+      altitude: "3,800 - 5,500m",
+      region: "Tibetan Plateau",
+      regionDetail: "(Yushu)",
       developmentStage: "Commercial-Ready",
       bioactivePower: "Level 5",
       domain: "Energy",
 
       heroImage: "/Cordyceps_sinensis.png",
+      atlasId: "#0001",
 
-      metrics: [
-        ["Altitude", "3,000–5,000m"],
-        ["Domain", "Energy"],
-        ["Development", "Commercial-Ready"],
-        ["Bioactive Power", "Level 5"],
-      ].map(([label, value]) => ({ label, value })),
+      functionalDomains: [
+        { domain: "Energy", score: 5 },
+        { domain: "Respiratory", score: 4.5 },
+        { domain: "Immunity", score: 4 },
+        { domain: "Longevity", score: 3.5 },
+        { domain: "Cognitive", score: 3 },
+      ],
+      developmentScore: 85,
+      developmentBlurb:
+        "A flagship high-altitude bioactive for energy and resilience, built for premium products where rarity justifies value.",
     },
 
     originNarrative: {

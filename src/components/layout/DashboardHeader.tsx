@@ -1,85 +1,87 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
+const SEARCH_BG = "#0D1117";
+const SEARCH_BORDER = "#1B222C";
+const GOLD = "#B09B6A";
+const GOLD_BUTTON_TEXT = "#0A0A0A";
 
 export default function DashboardHeader() {
-  return (
-    <header className="sticky top-0 z-50 border-b border-white/[0.06] bg-[#040B11]/95 backdrop-blur-md">
-      <div className="mx-auto flex h-[72px] max-w-[1680px] items-center gap-4 px-5 md:gap-6 md:px-8 xl:px-10">
-        <Link href="/" className="shrink-0 leading-none">
-          <div className="flex items-baseline gap-0.5 text-[15px] font-medium uppercase tracking-[0.22em]">
-            <span className="text-[#F3F1EA]">Polar</span>
-            <span className="text-[#7FAE8D]">Herb</span>
-          </div>
-          <span className="mt-1 block text-[9px] font-medium uppercase tracking-[0.34em] text-[#D0A85C]/88">
-            Atlas
-          </span>
-        </Link>
+    return (
+        <header className="absolute left-[32px] right-[32px] top-[32px] z-50 grid h-[48px] grid-cols-[auto_minmax(180px,720px)_auto] items-center gap-4 md:left-[76px] md:right-[76px] md:gap-5 xl:left-[84px] xl:right-[84px] xl:gap-8">
+            <Link href="/" className="relative block h-[24px] w-[124px] shrink-0 md:h-[30px] md:w-[156px] xl:h-[34px] xl:w-[178px]">
+                <Image
+                    src="/logo.png"
+                    alt="Polar Herb Atlas"
+                    fill
+                    priority
+                    className="object-contain object-left"
+                    sizes="(min-width: 1280px) 178px, (min-width: 768px) 156px, 124px"
+                />
+            </Link>
 
-        <div className="mx-auto hidden min-w-0 flex-1 md:block md:max-w-[560px] lg:max-w-[640px]">
-          <label className="relative block">
-            <span className="sr-only">Search herbs</span>
-            <input
-              type="search"
-              placeholder="Search herb, function, compound or keyword..."
-              className="h-11 w-full rounded-full border border-white/[0.08] bg-[#0A1219] px-5 pr-12 text-[13px] text-[#F3F1EA] placeholder:text-[#D7DCE2]/42 outline-none transition-colors focus:border-[#D0A85C]/35"
-            />
-            <span className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-[#D0A85C]/75">
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.75"
-                aria-hidden
-              >
-                <circle cx="11" cy="11" r="7" />
-                <path d="M20 20L16.5 16.5" strokeLinecap="round" />
-              </svg>
-            </span>
-          </label>
-        </div>
+            <label className="relative w-full min-w-[180px] justify-self-center">
+                <span className="sr-only">Search herbs</span>
+                <input
+                    type="search"
+                    placeholder="Search herb, function, compound or keyword..."
+                    className="h-[42px] w-full rounded-full border px-6 pr-12 text-[14px] outline-none transition-colors placeholder:text-[#8D9299] focus:border-[#B09B6A]/50"
+                    style={{
+                        backgroundColor: SEARCH_BG,
+                        borderColor: SEARCH_BORDER,
+                        color: "#E5E7EB",
+                    }}
+                />
+                <span className="pointer-events-none absolute right-5 top-1/2 -translate-y-1/2" style={{ color: GOLD }}>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden>
+                        <circle cx="11" cy="11" r="7" />
+                        <path d="M20 20L16.5 16.5" strokeLinecap="round" />
+                    </svg>
+                </span>
+            </label>
 
-        <div className="ml-auto flex shrink-0 items-center gap-3 md:gap-4">
-          <button
-            type="button"
-            className="hidden rounded-full bg-[#D0A85C] px-4 py-2.5 text-[11px] font-medium uppercase tracking-[0.14em] text-[#040B11] transition-opacity hover:opacity-90 sm:inline-flex"
-          >
-            Developer Dashboard
-          </button>
+            <div className="flex shrink-0 items-center justify-self-end gap-2 md:gap-3 xl:gap-5">
+                <button
+                    type="button"
+                    className="inline-flex h-[42px] w-[42px] shrink-0 items-center justify-center rounded-full px-0 text-[12px] font-medium transition-opacity hover:opacity-90 md:w-auto md:px-4 xl:px-6 xl:text-[14px]"
+                    style={{ backgroundColor: GOLD, color: GOLD_BUTTON_TEXT }}
+                >
+                    <span className="hidden lg:inline">Developer Dashboard</span>
+                    <span className="hidden md:inline lg:hidden">Dev</span>
+                    <span className="md:hidden">D</span>
+                </button>
 
-          <button
-            type="button"
-            className="flex items-center gap-2.5 rounded-full border border-white/[0.08] bg-[#0A1219] py-1.5 pl-1.5 pr-3"
-          >
-            <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#1A2530] text-[10px] uppercase tracking-[0.12em] text-[#D7DCE2]/55">
-              IO
-            </span>
-            <span className="hidden text-[12px] text-[#D7DCE2]/82 sm:inline">irvingou3</span>
-            <svg
-              width="12"
-              height="12"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.75"
-              className="text-[#D7DCE2]/45"
-              aria-hidden
-            >
-              <path d="M6 9L12 15L18 9" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </button>
-        </div>
-      </div>
-
-      <div className="border-t border-white/[0.04] px-5 pb-3 md:hidden">
-        <input
-          type="search"
-          placeholder="Search herb, function, compound or keyword..."
-          className="h-10 w-full rounded-full border border-white/[0.08] bg-[#0A1219] px-4 text-[13px] text-[#F3F1EA] placeholder:text-[#D7DCE2]/42 outline-none"
-        />
-      </div>
-    </header>
-  );
+                <button
+                    type="button"
+                    className="inline-flex h-[42px] shrink-0 items-center gap-2 rounded-full border py-1.5 pl-2 pr-3 xl:gap-3 xl:pl-2.5 xl:pr-4"
+                    style={{
+                        backgroundColor: SEARCH_BG,
+                        borderColor: SEARCH_BORDER,
+                    }}
+                >
+                    <span
+                        className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full"
+                        style={{ backgroundColor: "#1A2530" }}
+                        aria-hidden
+                    />
+                    <span className="hidden text-[13px] lg:inline xl:text-[14px]" style={{ color: "#D1D5DB" }}>
+                        irvingou3
+                    </span>
+                    <svg
+                        width="14"
+                        height="14"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="1.75"
+                        className="text-[#9CA3AF]"
+                        aria-hidden
+                    >
+                        <path d="M6 9L12 15L18 9" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                </button>
+            </div>
+        </header>
+    );
 }

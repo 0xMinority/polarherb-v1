@@ -58,7 +58,7 @@ export function SidebarNav({ sections, domain }: SidebarNavProps) {
     }, [sections, sectionIds]);
 
     return (
-        <aside className="relative overflow-hidden p-5 shadow-[0_32px_100px_rgba(0,0,0,0.22)] backdrop-blur-sm md:p-7 lg:sticky lg:top-10 lg:self-start xl:p-10" style={{ backgroundColor: `${DETAIL_SURFACE}F5` }}>
+        <aside className="relative overflow-hidden p-6 shadow-[0_32px_100px_rgba(0,0,0,0.22)] backdrop-blur-sm md:p-8 lg:sticky lg:top-10 lg:self-start xl:p-10" style={{ backgroundColor: `${DETAIL_SURFACE}F5` }}>
             <div
                 className="pointer-events-none absolute inset-0 opacity-70"
                 style={{
@@ -68,13 +68,13 @@ export function SidebarNav({ sections, domain }: SidebarNavProps) {
 
             <div className="relative z-10">
                 <p
-                    className="text-[10px] uppercase tracking-[0.22em]"
+                    className="text-[12px] uppercase tracking-[0.22em]"
                     style={{ color: domainColor }}
                 >
                     Profile Index
                 </p>
 
-                <div className={`mt-6 max-h-[420px] space-y-[1px] overflow-y-auto ${DETAIL_GRID_BORDER} md:mt-8 lg:max-h-[calc(100vh-160px)] xl:mt-10`}>
+                <div className={`mt-8 max-h-[420px] space-y-[1px] overflow-y-auto ${DETAIL_GRID_BORDER} lg:max-h-[calc(100vh-160px)] xl:mt-10`}>
                     {sections.map((section, index) => {
                         const isActive = activeSection === section || (!activeSection && index === 0);
                         const sectionId = sectionIds[index];
@@ -83,7 +83,7 @@ export function SidebarNav({ sections, domain }: SidebarNavProps) {
                             <a
                                 href={`#${sectionId}`}
                                 key={section}
-                                className="group block px-4 py-4 text-[10px] uppercase tracking-[0.18em] transition-all duration-300 md:px-5 md:py-5 md:text-[11px] md:tracking-[0.2em]"
+                                className="group block px-5 py-4 text-[12px] uppercase tracking-[0.18em] transition-all duration-300 md:px-6 md:py-5 md:text-[13px] md:tracking-[0.2em]"
                                 style={{
                                     background: isActive ? `${domainColor}12` : DETAIL_SURFACE,
                                     color: isActive

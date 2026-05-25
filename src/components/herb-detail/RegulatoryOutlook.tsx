@@ -15,7 +15,7 @@ const DETAIL_GRID_BORDER = "bg-white/[0.05]";
 
 export function RegulatoryOutlook({ regulatory }: RegulatoryOutlookProps) {
   return (
-    <div className="relative mt-16 overflow-hidden border border-white/[0.07] p-5 shadow-[0_40px_120px_rgba(0,0,0,0.22)] backdrop-blur-sm md:p-7 xl:p-8" style={{ backgroundColor: `${DETAIL_PANEL_SURFACE}EB` }}>
+    <div className="relative mt-16 overflow-hidden border border-white/[0.07] p-6 shadow-[0_40px_120px_rgba(0,0,0,0.22)] backdrop-blur-sm md:p-8 xl:p-8" style={{ backgroundColor: `${DETAIL_PANEL_SURFACE}EB` }}>
       <div
         className="pointer-events-none absolute inset-0 opacity-70"
         style={{
@@ -30,7 +30,7 @@ export function RegulatoryOutlook({ regulatory }: RegulatoryOutlookProps) {
       <div className="relative z-10">
         <div className="flex flex-col gap-6 xl:flex-row xl:items-end xl:justify-between">
           <div>
-            <p className="text-[10px] uppercase tracking-[0.22em]" style={{ color: `${DETAIL_ACCENT_GOLD}E0` }}>
+            <p className="text-[12px] uppercase tracking-[0.22em]" style={{ color: `${DETAIL_ACCENT_GOLD}E0` }}>
               Regulatory Outlook
             </p>
 
@@ -39,14 +39,14 @@ export function RegulatoryOutlook({ regulatory }: RegulatoryOutlookProps) {
             </h3>
           </div>
 
-          <div className="border border-white/[0.06] px-4 py-3 text-[10px] uppercase tracking-[0.18em]" style={{ backgroundColor: `${DETAIL_SURFACE}B3`, color: `${DETAIL_TEXT_MUTED}73` }}>
+          <div className="border border-white/[0.06] px-4 py-3 text-[12px] uppercase tracking-[0.18em]" style={{ backgroundColor: `${DETAIL_SURFACE}B3`, color: `${DETAIL_TEXT_MUTED}73` }}>
             Compliance readiness layer
           </div>
         </div>
 
         <div className={`mt-8 grid grid-cols-1 gap-[1px] ${DETAIL_GRID_BORDER} xl:mt-10 xl:grid-cols-[0.88fr_1.12fr]`}>
-          <div className="p-5 md:p-7" style={{ backgroundColor: DETAIL_SURFACE }}>
-            <p className="text-[10px] uppercase tracking-[0.2em]" style={{ color: `${DETAIL_TEXT_MUTED}59` }}>
+          <div className="p-6 md:p-8" style={{ backgroundColor: DETAIL_SURFACE }}>
+            <p className="text-[12px] uppercase tracking-[0.2em]" style={{ color: `${DETAIL_TEXT_MUTED}59` }}>
               Regulatory Pathway
             </p>
 
@@ -58,7 +58,7 @@ export function RegulatoryOutlook({ regulatory }: RegulatoryOutlookProps) {
                 return (
                   <div
                     key={step}
-                    className={`flex items-center justify-between p-4 text-[10px] uppercase tracking-[0.17em] ${
+                    className={`flex items-center justify-between p-4 text-[12px] uppercase tracking-[0.17em] ${
                       isComplete
                         ? "bg-[#D0A85C]/12"
                         : isCurrent
@@ -80,7 +80,7 @@ export function RegulatoryOutlook({ regulatory }: RegulatoryOutlookProps) {
               })}
             </div>
 
-            <p className="mt-8 text-[12px] leading-6" style={{ color: `${DETAIL_TEXT_MUTED}75` }}>
+            <p className="mt-8 text-[14px] leading-6" style={{ color: `${DETAIL_TEXT_MUTED}75` }}>
               Regulatory treatment varies by market and final product format. This module frames
               early diligence priorities rather than replacing jurisdiction-specific legal review.
             </p>
@@ -88,13 +88,13 @@ export function RegulatoryOutlook({ regulatory }: RegulatoryOutlookProps) {
 
           <div className={`grid grid-cols-1 gap-[1px] ${DETAIL_GRID_BORDER} md:grid-cols-2`}>
             {regulatory.items.map((item) => (
-              <div key={item.label} className="p-4 md:p-5" style={{ backgroundColor: DETAIL_SURFACE }}>
+              <div key={item.label} className="p-5 md:p-6" style={{ backgroundColor: DETAIL_SURFACE }}>
                 <div className="flex items-start justify-between gap-4">
-                  <p className="text-[9px] uppercase tracking-[0.18em]" style={{ color: `${DETAIL_TEXT_MUTED}59` }}>
+                  <p className="text-[11px] uppercase tracking-[0.18em]" style={{ color: `${DETAIL_TEXT_MUTED}59` }}>
                     {item.label}
                   </p>
 
-                  <span className="border border-[#D0A85C]/20 bg-[#D0A85C]/10 px-2 py-1 text-[8px] uppercase tracking-[0.14em]" style={{ color: `${DETAIL_ACCENT_GOLD}CC` }}>
+                  <span className="border border-[#D0A85C]/20 bg-[#D0A85C]/10 px-2.5 py-1 text-[10px] uppercase tracking-[0.14em]" style={{ color: `${DETAIL_ACCENT_GOLD}CC` }}>
                     {item.status}
                   </span>
                 </div>
@@ -103,7 +103,7 @@ export function RegulatoryOutlook({ regulatory }: RegulatoryOutlookProps) {
                   {item.value}
                 </p>
 
-                <p className="mt-4 text-[12px] leading-6" style={{ color: `${DETAIL_TEXT_MUTED}73` }}>
+                <p className="mt-4 text-[14px] leading-6" style={{ color: `${DETAIL_TEXT_MUTED}73` }}>
                   {item.note}
                 </p>
               </div>

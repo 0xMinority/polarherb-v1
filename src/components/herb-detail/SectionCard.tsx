@@ -97,12 +97,12 @@ export function SectionCard({
             </div>
 
             <div className="relative z-10">
-                <div className="flex items-center justify-between border-b border-white/[0.05] pb-5">
-                    <p className="text-[10px] uppercase tracking-[0.22em]" style={{ color: `${DETAIL_ACCENT_GOLD}BF` }}>
+                <div className="flex items-center justify-between border-b border-white/[0.05] pb-6">
+                    <p className="text-[12px] uppercase tracking-[0.22em]" style={{ color: `${DETAIL_ACCENT_GOLD}BF` }}>
                         {String(index + 1).padStart(2, "0")}
                     </p>
 
-                    <div className="flex items-center gap-6 text-[10px] uppercase tracking-[0.18em]" style={{ color: `${DETAIL_TEXT_MUTED}52` }}>
+                    <div className="flex items-center gap-6 text-[12px] uppercase tracking-[0.18em]" style={{ color: `${DETAIL_TEXT_MUTED}52` }}>
                         <span>Intelligence Layer</span>
                         <span>Structured Signal</span>
                     </div>
@@ -112,13 +112,13 @@ export function SectionCard({
                     {title}
                 </h2>
 
-                <div className="mt-8 flex flex-wrap gap-3">
-                    <div className="border border-white/[0.08] px-3 py-2 text-[11px] uppercase tracking-[0.16em]" style={{ color: `${DETAIL_TEXT_MUTED}9E` }}>
+                <div className="mt-6 flex flex-wrap gap-4">
+                    <div className="border border-white/[0.08] px-4 py-2.5 text-[13px] uppercase tracking-[0.16em]" style={{ color: `${DETAIL_TEXT_MUTED}9E` }}>
                         {herb.altitude}m
                     </div>
 
                     <div
-                        className="border px-3 py-2 text-[11px] uppercase tracking-[0.16em]"
+                        className="border px-4 py-2.5 text-[13px] uppercase tracking-[0.16em]"
                         style={{
                             borderColor: `${getDomainColor(herb.domain)}22`,
                             color: getDomainColor(herb.domain),
@@ -128,16 +128,16 @@ export function SectionCard({
                         {herb.domain}
                     </div>
 
-                    <div className="border border-white/[0.08] px-3 py-2 text-[11px] uppercase tracking-[0.16em]" style={{ color: `${DETAIL_TEXT_MUTED}9E` }}>
+                    <div className="border border-white/[0.08] px-4 py-2.5 text-[13px] uppercase tracking-[0.16em]" style={{ color: `${DETAIL_TEXT_MUTED}9E` }}>
                         Readiness {herb.readiness}
                     </div>
 
-                    <div className="border border-white/[0.08] px-3 py-2 text-[11px] uppercase tracking-[0.16em]" style={{ color: `${DETAIL_TEXT_MUTED}9E` }}>
+                    <div className="border border-white/[0.08] px-4 py-2.5 text-[13px] uppercase tracking-[0.16em]" style={{ color: `${DETAIL_TEXT_MUTED}9E` }}>
                         Power {herb.power}
                     </div>
                 </div>
 
-                <p className="mt-7 max-w-[820px] text-[15px] leading-8 md:text-[16px] xl:mt-10 xl:text-[17px] xl:leading-[2.1]" style={{ color: `${DETAIL_TEXT_MUTED}AD` }}>
+                <p className="mt-8 max-w-[820px] text-[17px] leading-8 md:text-[18px] xl:mt-10 xl:text-[19px] xl:leading-[2.1]" style={{ color: `${DETAIL_TEXT_MUTED}AD` }}>
                     {meta.description}
                 </p>
 
@@ -151,7 +151,7 @@ export function SectionCard({
                         ].map(([label, value]) => (
                             <div
                                 key={label}
-                                className="p-4 xl:p-5"
+                                className="p-5 xl:p-6"
                                 style={{
                                     background:
                                         label === "Functional Domain" ||
@@ -166,7 +166,7 @@ export function SectionCard({
                                             : "1px solid rgba(255,255,255,0.04)",
                                 }}
                             >
-                                <p className="text-[10px] uppercase tracking-[0.18em]" style={{ color: `${DETAIL_TEXT_MUTED}59` }}>
+                                <p className="text-[12px] uppercase tracking-[0.18em]" style={{ color: `${DETAIL_TEXT_MUTED}59` }}>
                                     {label}
                                 </p>
 

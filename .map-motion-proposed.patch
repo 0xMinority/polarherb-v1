@@ -1,0 +1,18 @@
+--- src/lib/map-focus.ts	2026-05-20 07:13:51
++++ .proposed-map-motion/map-focus.ts	2026-05-25 13:42:26
+@@ -4,11 +4,11 @@
+   const herbY = 100 - (herb.altitude / 6000) * 100;
+ 
+   return {
+-    scale: 1.45,
++    scale: 1.14,
+ 
+     offset: {
+-      x: (42 - herb.readiness) * 7,
+-      y: (46 - herbY) * 4.8,
++      x: (42 - herb.readiness) * 3.1,
++      y: (46 - herbY) * 2.1,
+     },
+   };
+ }
+\ No newline at end of file

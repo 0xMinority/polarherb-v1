@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import type { HerbNode } from "../../data/herbs";
 
@@ -10,11 +11,11 @@ interface HerbMapNodeProps {
 }
 
 const sizeMap = {
-  1: 8,
-  2: 10,
-  3: 12,
-  4: 14,
-  5: 18,
+  1: 22,
+  2: 26,
+  3: 30,
+  4: 34,
+  5: 40,
 };
 
 const colorMap = {
@@ -25,102 +26,107 @@ const colorMap = {
   Longevity: "#B08FD6",
 };
 
+function plotPosition(herb: HerbNode) {
+  const x = 7 + herb.readiness * 0.86;
+  const y = 11 + (100 - (herb.altitude / 6000) * 100) * 0.72;
+  return { x, y };
+}
+
 export default function HerbMapNode({
   herb,
   isSelected,
   onSelect,
 }: HerbMapNodeProps) {
-  const x = herb.readiness;
-  const y = 100 - (herb.altitude / 6000) * 100;
+  const { x, y } = plotPosition(herb);
 
   const color = colorMap[herb.domain as keyof typeof colorMap];
   const size = sizeMap[herb.power as keyof typeof sizeMap];
-  const nodeOpacity = 0.42 + herb.power * 0.12;
+  const nodeOpacity = 0.62 + herb.power * 0.06;
 
   return (
     <motion.div
-      className="group absolute cursor-pointer"
+      className="group absolute z-[2] cursor-pointer"
       onClick={onSelect}
       style={{
         left: `${x}%`,
         top: `${y}%`,
-        transform: `translate(-50%, -50%) scale(${isSelected ? 1.18 : 1})`,
-        filter: `
-          drop-shadow(0 0 12px ${color}22)
-          drop-shadow(0 0 28px ${color}14)
-        `,
+        transform: `translate(-50%, -50%)`,
       }}
-      initial={{ opacity: 0, scale: 0.7 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
     >
-      <motion.div
-        className="rounded-full transition-transform duration-500"
-        style={{
-          width: `${size}px`,
-          height: `${size}px`,
-          background: `
-            radial-gradient(
-              circle at 30% 30%,
-              rgba(255,255,255,0.22),
-              ${color}CC 32%,
-              ${color}55 68%,
-              rgba(0,0,0,0.16) 100%
-            )
-          `,
-          border: `1px solid ${color}55`,
-          opacity: nodeOpacity,
-          boxShadow: isSelected
-            ? `0 0 56px ${color}BB, 0 0 120px ${color}33`
-            : `0 0 32px ${color}66`,
-          backdropFilter: "blur(8px)",
-        }}
-        animate={{
-          opacity: isSelected ? 1 : nodeOpacity * 0.72,
-          scale: isSelected ? [1.24, 1.34, 1.24] : [0.92, 1, 0.92],
-        }}
-        transition={{
-          duration: 4.8,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-      />
-
-      {isSelected && (
-        <div className="pointer-events-none absolute left-1/2 top-[30px] -translate-x-1/2 whitespace-nowrap text-[10px] uppercase tracking-[0.18em] text-[#F3F1EA]/72">
-          {herb.name}
-        </div>
-      )}
-
-      <motion.div className="pointer-events-none absolute left-1/2 top-[-72px] w-[230px] -translate-x-1/2 opacity-0 transition-all duration-300 group-hover:translate-y-[-4px] group-hover:opacity-100">
+      <div className="relative flex flex-col items-center">
         <div
-          className="border px-5 py-4 shadow-[0_24px_80px_rgba(0,0,0,0.34)] backdrop-blur-[14px]"
+          className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full blur-xl"
           style={{
-            borderColor: `${color}22`,
-            background: "rgba(7,16,22,0.92)",
+            width: `${size * 1.4}px`,
+            height: `${size * 1.4}px`,
+            background: `radial-gradient(circle, ${color}${isSelected ? "44" : "28"} 0%, transparent 72%)`,
+          }}
+        />
+
+        <div
+          className="relative flex items-center justify-center rounded-full border"
+          style={{
+            width: `${size}px`,
+            height: `${size}px`,
+            borderColor: `${color}${isSelected ? "99" : "44"}`,
+            background: `
+              radial-gradient(circle at 35% 28%, rgba(255,255,255,0.14), transparent 42%),
+              rgba(8,18,26,0.62)
+            `,
+            boxShadow: isSelected
+              ? `0 0 24px ${color}66, inset 0 0 12px ${color}18`
+              : `0 0 14px ${color}33`,
+            opacity: nodeOpacity,
+            transform: isSelected ? "scale(1.06)" : "scale(1)",
+            transition: "transform 0.35s ease, box-shadow 0.35s ease",
           }}
         >
-          <div className="flex items-center justify-between">
-            <p className="text-[12px] font-medium tracking-[0.01em] text-[#F3F1EA]">
-              {herb.name}
-            </p>
-
-            <div
-              className="h-2 w-2 rounded-full"
+          <div
+            className="relative overflow-hidden rounded-full"
+            style={{
+              width: `${size * 0.68}px`,
+              height: `${size * 0.68}px`,
+            }}
+          >
+            <Image
+              src="/Cordyceps_sinensis.png"
+              alt=""
+              fill
+              className="object-contain opacity-88"
               style={{
-                background: color,
-                boxShadow: `0 0 18px ${color}88`,
+                filter: `saturate(1.05) hue-rotate(${herb.domain === "Energy" ? "0deg" : herb.domain === "Immunity" ? "40deg" : herb.domain === "Cognitive" ? "180deg" : herb.domain === "Respiratory" ? "200deg" : "260deg"})`,
               }}
             />
           </div>
-
-          <div className="mt-3 flex items-center gap-2 text-[9px] uppercase tracking-[0.18em] text-[#D7DCE2]/58">
-            <span>{herb.altitude}m</span>
-            <span>•</span>
-            <span>{herb.domain}</span>
-          </div>
         </div>
-      </motion.div>
+
+        <p
+          className="pointer-events-none mt-1 max-w-[96px] text-center text-[8px] font-medium leading-tight text-[#F3F1EA]/82"
+          style={{ opacity: isSelected ? 1 : 0.72 }}
+        >
+          {herb.name}
+        </p>
+      </div>
+
+      <div className="pointer-events-none absolute left-[calc(100%+8px)] top-1/2 z-30 w-[max-content] max-w-[168px] -translate-y-1/2 opacity-0 transition-opacity duration-200 group-hover:opacity-100">
+        <div
+          className="rounded-md border px-2.5 py-2 shadow-[0_12px_36px_rgba(0,0,0,0.45)] backdrop-blur-md"
+          style={{
+            borderColor: `${color}24`,
+            background: "rgba(6,14,20,0.94)",
+          }}
+        >
+          <p className="text-[9px] font-medium leading-snug text-[#F3F1EA]">
+            {herb.name}
+          </p>
+          <p className="mt-1 text-[7px] uppercase tracking-[0.12em] text-[#D7DCE2]/48">
+            {herb.altitude}m · {herb.domain}
+          </p>
+        </div>
+      </div>
     </motion.div>
   );
 }

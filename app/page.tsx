@@ -1,40 +1,23 @@
-import PageContainer from "../src/components/layout/PageContainer";
-import SectionHeading from "../src/components/layout/SectionHeading";
-import ModuleSurface from "../src/components/ui/ModuleSurface";
+import DashboardHeader from "../src/components/layout/DashboardHeader";
 import AtlasMapShell from "../src/components/map/AtlasMapShell";
 import HerbProfilesSection from "../src/components/modules/HerbProfilesSection";
+import DiscoverPanel from "../src/components/modules/DiscoverPanel";
 
 export default function Home() {
   return (
-    <main className="bg-[#040B11] text-[#F3F1EA]">
-      <section className="relative min-h-screen overflow-hidden pt-[140px] pb-[120px]">
-        <div
-          className="pointer-events-none absolute inset-0 opacity-90"
-          style={{
-            background: `
-      radial-gradient(circle at top center, rgba(208,168,92,0.10), transparent 26%),
-      radial-gradient(circle at 20% 30%, rgba(90,120,160,0.10), transparent 34%),
-      linear-gradient(to bottom, #050D14 0%, #040B11 52%, #03070B 100%)
-    `,
-          }}
-        />
-        <PageContainer>
-          <div className="relative z-10 w-full">
-            <div className="pointer-events-none absolute left-1/2 top-[120px] h-[520px] w-[920px] -translate-x-1/2 rounded-full bg-[#D0A85C]/[0.04] blur-[140px]" />
-            <SectionHeading
-              eyebrow="PolarHerb Intelligence Interface"
-              title="High-altitude botanical commercialization intelligence."
-              description="An institutional interface for mapping rare alpine herbs, evidence signals, commercialization readiness, and biological potential."
-            />
-            <div className="mt-20">
-              <ModuleSurface>
-                <AtlasMapShell />
-              </ModuleSurface>
-            </div>
-          </div>
-        </PageContainer>
-      </section>
-      <HerbProfilesSection />
-    </main>
+    <div className="min-h-screen bg-[#040B11] text-[#F3F1EA]">
+      <DashboardHeader />
+
+      <main className="mx-auto flex min-h-[calc(100vh-72px)] max-w-[1680px] flex-col px-5 pb-8 pt-5 md:px-8 md:pb-10 md:pt-6 xl:px-10">
+        <section className="min-h-0 flex-1 overflow-hidden rounded-[20px] border border-white/[0.07] bg-[#071016]/94 shadow-[0_50px_160px_rgba(0,0,0,0.34)]">
+          <AtlasMapShell />
+        </section>
+
+        <section className="mt-4 grid shrink-0 grid-cols-1 gap-4 lg:mt-5 lg:grid-cols-[minmax(0,1.65fr)_minmax(300px,1fr)] lg:gap-5">
+          <HerbProfilesSection />
+          <DiscoverPanel />
+        </section>
+      </main>
+    </div>
   );
 }

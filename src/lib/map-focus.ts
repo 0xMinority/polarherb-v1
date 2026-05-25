@@ -4,11 +4,11 @@ export function calculateMapFocus(herb: HerbNode) {
   const herbY = 100 - (herb.altitude / 6000) * 100;
 
   return {
-    scale: 1.45,
+    scale: 1.14,
 
     offset: {
-      x: (42 - herb.readiness) * 7,
-      y: (46 - herbY) * 4.8,
+      x: (42 - herb.readiness) * 3.1,
+      y: (46 - herbY) * 2.1,
     },
   };
 }

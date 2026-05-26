@@ -1,7 +1,5 @@
 import DashboardHeader from "../../../src/components/layout/DashboardHeader";
 import { dashboardHeaderLayout } from "../../../src/components/layout/dashboard-header-layout";
-import { SectionCard } from "../../../src/components/herb-detail/SectionCard";
-import { SidebarNav } from "../../../src/components/herb-detail/SidebarNav";
 import { FormulationReadiness } from "../../../src/components/herb-detail/FormulationReadiness";
 import { RegulatoryStatus } from "../../../src/components/herb-detail/RegulatoryStatus";
 import { EvidenceLevel } from "../../../src/components/herb-detail/EvidenceLevel";
@@ -14,7 +12,6 @@ import { HeroPanel } from "../../../src/components/herb-detail/HeroPanel";
 import { notFound } from "next/navigation";
 import { herbNodes } from "../../../src/data/herbs";
 import { getHerbDetailBySlug } from "../../../src/data/herb-details";
-import { herbProfileSections } from "../../../src/config/herb-sections";
 
 export function generateStaticParams() {
   return herbNodes.map((herb) => ({
@@ -65,22 +62,6 @@ export default async function HerbDetailPage({ params }: HerbDetailPageProps) {
         <RegulatoryStatus regulatoryStatus={detail.regulatoryStatus} />
 
         <EvidenceLevel evidenceLevel={detail.evidenceLevel} />
-
-        <section className="relative z-10 mx-auto grid max-w-[1680px] grid-cols-1 gap-[1px] bg-white/[0.05] px-5 pb-[110px] md:px-8 md:pb-[140px] xl:px-10 xl:pb-[180px] lg:grid-cols-[320px_1fr] 2xl:grid-cols-[380px_1fr]">
-          <SidebarNav sections={herbProfileSections} domain={herb.domain} />
-
-          <div className="space-y-[1px]">
-            {herbProfileSections.map((section, index) => (
-              <SectionCard
-                key={section}
-                index={index}
-                title={section}
-                herb={herb}
-                detail={detail}
-              />
-            ))}
-          </div>
-        </section>
       </main>
     </div>
   );

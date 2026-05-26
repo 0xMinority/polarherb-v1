@@ -22,6 +22,7 @@ export const DETAIL_MODULE_CARD_COLOR = "#0E1116";
 export const DETAIL_TEXT_PRIMARY = "#F3F1EA";
 export const DETAIL_TEXT_MUTED = "#94A3B8";
 export const DETAIL_ACCENT_GOLD = "#C5A059";
+export const DETAIL_STATUS_GREEN = "#7FAE8D";
 
 /** Common alpha variants used across accepted modules. */
 export const DETAIL_ACCENT_GOLD_SUBTITLE = `${DETAIL_ACCENT_GOLD}CC`;

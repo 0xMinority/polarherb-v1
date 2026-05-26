@@ -200,6 +200,95 @@ export interface HerbSynergyNetworkData {
   defaultPairingId: string;
 }
 
+export interface FormulationConsideration {
+  title: string;
+  description: string;
+  score: number;
+  icon: string;
+}
+
+export interface SuitableProductFormat {
+  name: string;
+  suitability: string;
+  filledBars: number;
+  icon: string;
+}
+
+export interface ReadinessIndicator {
+  label: string;
+  icon: string;
+}
+
+export interface HerbFormulationReadinessData {
+  subtitle: string;
+  considerations: FormulationConsideration[];
+  suitableFormats: SuitableProductFormat[];
+  readinessInsight: {
+    centerImage: string;
+    overallLabel: string;
+    headline: string;
+    description: string;
+    indicators: ReadinessIndicator[];
+  };
+}
+
+export interface RegulatoryStatusColumn {
+  heading: string;
+  text: string;
+}
+
+export interface RegulatoryMarketProfile {
+  id: string;
+  countryName: string;
+  flagEmoji: string;
+  accessLabel: string;
+  columns: RegulatoryStatusColumn[];
+  commercializationLabels: string[];
+  commercializationFilled: number;
+  deploymentNotes: string[];
+}
+
+export interface HerbRegulatoryStatusData {
+  subtitle: string;
+  defaultMarketId: string;
+  markets: RegulatoryMarketProfile[];
+  footerNote: string;
+}
+
+export interface EvidenceGlanceMetric {
+  value: string;
+  valueVariant: "number" | "text";
+  label: string;
+  caption: string;
+}
+
+export type EvidenceStrengthTone = "strong" | "moderate";
+
+export interface EvidenceCompositionRow {
+  dimension: string;
+  level: string;
+  filledBars: number;
+  tone: EvidenceStrengthTone;
+  description: string;
+}
+
+export interface EvidenceInsightColumn {
+  title: string;
+  body: string;
+}
+
+export interface HerbEvidenceLevelData {
+  subtitle: string;
+  glance: EvidenceGlanceMetric[];
+  composition: EvidenceCompositionRow[];
+  insight: EvidenceInsightColumn[];
+  developerDashboardCta: {
+    label: string;
+    description: string;
+    href: string;
+  };
+}
+
 export interface HerbDetailData {
   slug: string;
 
@@ -235,6 +324,12 @@ export interface HerbDetailData {
   comparativeMatchup: HerbComparativeMatchupData;
 
   synergyNetwork: HerbSynergyNetworkData;
+
+  formulationReadiness: HerbFormulationReadinessData;
+
+  regulatoryStatus: HerbRegulatoryStatusData;
+
+  evidenceLevel: HerbEvidenceLevelData;
 
   evidence: HerbEvidenceData;
 

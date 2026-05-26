@@ -473,6 +473,249 @@ export const herbDetails: HerbDetailData[] = [
       ],
     },
 
+    formulationReadiness: {
+      subtitle: "Key formulation compatibility and commercialization readiness insights.",
+      considerations: [
+        {
+          title: "Formulation Compatibility",
+          description:
+            "Water extracts integrate well with most beverage, capsule, and functional food systems.",
+          score: 4,
+          icon:
+            "/herb/001_cordyceps_sinensis/module7_formulation_readiness/key_fomulation_considerations/icon_01.png",
+        },
+        {
+          title: "Effective Dosage Practicality",
+          description:
+            "Functional benefits typically achieved within 1–3 g/day of extract, fitting standard servings.",
+          score: 4,
+          icon:
+            "/herb/001_cordyceps_sinensis/module7_formulation_readiness/key_fomulation_considerations/icon_02.png",
+        },
+        {
+          title: "Sensory Burden",
+          description:
+            "Mild earthy aroma and slight bitterness; minimal impact in most formulations.",
+          score: 4,
+          icon:
+            "/herb/001_cordyceps_sinensis/module7_formulation_readiness/key_fomulation_considerations/icon_03.png",
+        },
+        {
+          title: "Processing Resilience",
+          description:
+            "Stable under drying, heat processing, and storage with proper handling.",
+          score: 4,
+          icon:
+            "/herb/001_cordyceps_sinensis/module7_formulation_readiness/key_fomulation_considerations/icon_04.png",
+        },
+      ],
+      suitableFormats: [
+        {
+          name: "Powder / Drink Mix",
+          suitability: "Very Suitable",
+          filledBars: 4,
+          icon:
+            "/herb/001_cordyceps_sinensis/module7_formulation_readiness/suitable_product_formats/icon_01.png",
+        },
+        {
+          name: "Capsule / Tablet",
+          suitability: "Very Suitable",
+          filledBars: 4,
+          icon:
+            "/herb/001_cordyceps_sinensis/module7_formulation_readiness/suitable_product_formats/icon_02.png",
+        },
+        {
+          name: "Liquid / Tonic",
+          suitability: "Very Suitable",
+          filledBars: 4,
+          icon:
+            "/herb/001_cordyceps_sinensis/module7_formulation_readiness/suitable_product_formats/icon_03.png",
+        },
+        {
+          name: "Functional Food",
+          suitability: "Very Suitable",
+          filledBars: 4,
+          icon:
+            "/herb/001_cordyceps_sinensis/module7_formulation_readiness/suitable_product_formats/icon_04.png",
+        },
+        {
+          name: "Topical / Cosmetic",
+          suitability: "Possible",
+          filledBars: 3,
+          icon:
+            "/herb/001_cordyceps_sinensis/module7_formulation_readiness/suitable_product_formats/icon_05.png",
+        },
+        {
+          name: "Sensory / Experiential",
+          suitability: "Possible",
+          filledBars: 3,
+          icon:
+            "/herb/001_cordyceps_sinensis/module7_formulation_readiness/suitable_product_formats/icon_06.png",
+        },
+      ],
+      readinessInsight: {
+        centerImage:
+          "/herb/001_cordyceps_sinensis/module7_formulation_readiness/readiness_insights/image_01.png",
+        overallLabel: "OVERALL",
+        headline: "Commercial-Ready Ingredient",
+        description: "Suitable across beverage, capsule, and functional food systems.",
+        indicators: [
+          {
+            label: "Technically Feasible",
+            icon:
+              "/herb/001_cordyceps_sinensis/module7_formulation_readiness/readiness_insights/icon_01.png",
+          },
+          {
+            label: "Manufacturing Ready",
+            icon:
+              "/herb/001_cordyceps_sinensis/module7_formulation_readiness/readiness_insights/icon_02.png",
+          },
+          {
+            label: "Market Appropriate",
+            icon:
+              "/herb/001_cordyceps_sinensis/module7_formulation_readiness/readiness_insights/icon_03.png",
+          },
+        ],
+      },
+    },
+
+    regulatoryStatus: {
+      subtitle:
+        "Understand where Cordyceps Sinensis can be legally commercialized and to what extent across global markets.",
+      defaultMarketId: "united-states",
+      footerNote:
+        "Regulatory status may evolve. Always confirm with up-to-date local regulations before launch.",
+      markets: [
+        {
+          id: "united-states",
+          countryName: "United States",
+          flagEmoji: "🇺🇸",
+          accessLabel: "Broadly Accessible",
+          columns: [
+            {
+              heading: "Regulatory Status",
+              text:
+                "Cordyceps Sinensis is recognized as a food ingredient. It can be used in foods, functional foods, and dietary supplements.",
+            },
+            {
+              heading: "Permitted Uses",
+              text:
+                "Functional foods, beverages, capsules, tonics, powdered blends, and dietary supplement systems.",
+            },
+            {
+              heading: "Claims Permissibility",
+              text:
+                "Structure-function claims may be used within applicable dietary supplement and food regulatory frameworks.",
+            },
+          ],
+          commercializationLabels: ["Very Limited", "Limited", "Moderate", "Broad", "Very Broad"],
+          commercializationFilled: 4,
+          deploymentNotes: [
+            "No Novel Food Barrier",
+            "Functional Claims Possible",
+            "Supplement Category Compatible",
+          ],
+        },
+      ],
+    },
+
+    evidenceLevel: {
+      subtitle:
+        "Summary of the real-world evidence supporting the PolarHerb® Atlas Profile of Cordyceps Sinensis.",
+      glance: [
+        {
+          value: "186+",
+          valueVariant: "number",
+          label: "Supporting Literatures",
+          caption: "Peer-reviewed articles from scientific databases",
+        },
+        {
+          value: "25+",
+          valueVariant: "number",
+          label: "Human Studies",
+          caption: "Clinical trials and observational studies",
+        },
+        {
+          value: "Widely",
+          valueVariant: "text",
+          label: "Commercialized",
+          caption: "Present in supplements, functional food & tonics worldwide",
+        },
+        {
+          value: "1000+ Years",
+          valueVariant: "text",
+          label: "Traditional Use",
+          caption:
+            "Long-standing use in both TCM and Folk Medicine in the Tibetan Plateau region.",
+        },
+      ],
+      composition: [
+        {
+          dimension: "Traditional Knowledge",
+          level: "Very Strong",
+          filledBars: 5,
+          tone: "strong",
+          description:
+            "Extensive historical use in traditional medicine systems for vitality, energy and respiratory support.",
+        },
+        {
+          dimension: "Preclinical Research",
+          level: "Strong",
+          filledBars: 4,
+          tone: "strong",
+          description:
+            "Substantial preclinical evidence supporting immune modulation, mitochondrial function, and anti-inflammatory activities.",
+        },
+        {
+          dimension: "Human Research",
+          level: "Moderate",
+          filledBars: 3,
+          tone: "moderate",
+          description:
+            "Emerging clinical and observational studies indicating benefits in exercise performance, fatigue reduction and quality of life.",
+        },
+        {
+          dimension: "Commercial Adoption",
+          level: "Strong",
+          filledBars: 4,
+          tone: "strong",
+          description:
+            "Widely used in supplements, functional foods and tonics globally with consistent market demand.",
+        },
+        {
+          dimension: "AI Mechanistic Confidence",
+          level: "Very Strong",
+          filledBars: 3,
+          tone: "moderate",
+          description:
+            "AI analysis indicates plausible mechanisms aligned with known bioactivities, with moderate confidence.",
+        },
+      ],
+      insight: [
+        {
+          title: "Well-Supported Domains",
+          body:
+            "Energy & endurance, oxygen utilization, respiratory support, immune modulation, and antioxidant activities.",
+        },
+        {
+          title: "Evidence Gaps",
+          body:
+            "Long-term clinical validation, disease-specific claims, standardized dosing outcomes in diverse populations.",
+        },
+        {
+          title: "Next Break-Through",
+          body:
+            "Well-designed human trials on performance, longevity, and specific health outcomes.",
+        },
+      ],
+      developerDashboardCta: {
+        label: "Open in Developer Dashboard",
+        description:
+          "Explore detailed molecular data, targets, pathways, docking results and experimental evidence in the Atlas Developer Dashboard.",
+        href: "#",
+      },
+    },
+
     evidence: {
       supportingLiteratures: "186+",
       confidence: "Moderate",
